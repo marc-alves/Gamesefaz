@@ -1,0 +1,3 @@
+# GameSEFAZ
+
+Projeto em desenvolvimento.
