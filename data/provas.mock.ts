@@ -1,0 +1,137 @@
+import type { ProvaWithSections } from '@/types';
+
+export const PROVAS_MOCK: ProvaWithSections[] = [
+  {
+    id: 'gerais',
+    label: 'Gerais',
+    badge: 'Peso 1 · 80q',
+    meta: '01/08/2026 · tarde',
+    sections: [
+      {
+        name: 'Língua Portuguesa',
+        topics: [
+          'Redação Oficial',
+          'Ortografia e acentuação',
+          'Emprego do sinal indicativo de crase',
+          'Compreensão e interpretação de textos',
+          'Denotação, conotação e intertextualidade',
+          'Figuras de linguagem',
+          'Morfossintaxe e processos de formação de palavras',
+          'Sinonímia, antonímia e pontuação',
+          'Pronomes',
+          'Concordância nominal e verbal',
+          'Flexão nominal e verbal e vozes do verbo',
+          'Correlação de tempos e modos verbais',
+          'Regência nominal e verbal',
+          'Coordenação, subordinação e conectivos',
+        ],
+      },
+      {
+        name: 'Matemática / Estatística / Raciocínio Lógico',
+        topics: [
+          'Juros simples — montante, taxa real e efetiva',
+          'Juros compostos — montante, capitalização contínua',
+          'Descontos simples e composto (racional e comercial)',
+          'Amortizações — Price, SAC e Sistema Misto',
+          'Fluxo de caixa, valor atual e TIR',
+          'Estatística descritiva — medidas de posição e variabilidade',
+          'Análise combinatória — combinações, arranjos, permutação',
+          'Probabilidades — distribuições discretas e contínuas',
+          'Inferência estatística e amostragem',
+          'Intervalos de confiança e testes de hipóteses',
+          'Correlação e regressão linear simples',
+          'Raciocínio lógico — estruturas, deduções e sequências',
+        ],
+      },
+      {
+        name: 'Administração e Governança Pública',
+        topics: [
+          'Reformas administrativas e gestão de suprimentos',
+          'Processos participativos — orçamento participativo, ouvidorias',
+          'Controles interno e externo — prestação de contas',
+          'Lei de Acesso à Informação (12.527/2011)',
+          'Governança organizacional — conceito, princípios e instâncias',
+          'Gestão de riscos — ISO 31000:2018, modelo de três linhas',
+          'Integridade e código de ética (Ceará)',
+          'Assédio e violência no trabalho — Convenção OIT 190/2019',
+        ],
+      },
+      {
+        name: 'Direito Tributário',
+        topics: [
+          'Sistema Tributário Nacional na CF/88',
+          'CTN — competência tributária e limitações',
+          'Obrigação tributária — fato gerador, sujeito ativo e passivo',
+          'Responsabilidade tributária',
+          'Crédito tributário — lançamento, suspensão, extinção, exclusão',
+          'Administração tributária — fiscalização, dívida ativa, certidões',
+          'LC 87/1996 (ICMS), LC 116/2003 (ISSQN), LC 123/2006 (Simples)',
+          'Reforma Tributária — EC 132/2023, LC 214/2025, LC 227/2026 (IBS/CBS)',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'especificos',
+    label: 'Específicos TI',
+    badge: 'Peso 2 · 80q',
+    meta: '02/08/2026 · manhã',
+    sections: [
+      {
+        name: 'TI — Governança e Gestão de TIC',
+        topics: [
+          'Governança de TI e alinhamento estratégico com negócio',
+          'PETIC e PDTIC — planejamento estratégico e tático',
+          'Gestão de demandas, portfólio e BRM',
+          'Contratações de TI — Lei 14.133/2021 (ETP, TR, SLA, fiscalização)',
+          'Gestão financeira de TI — TCO, ROI, CAPEX, OPEX, FinOps',
+          'Gestão de riscos — ISO 31000:2018',
+          'COBIT 2019, ITIL v4, PMBOK 7ª ed., MPS.BR, CMMI v2.0',
+          'Gestão de processos — BPMN, DMN, BPMS, Six Sigma, Value Stream',
+        ],
+      },
+      {
+        name: 'TI — Segurança da Informação',
+        topics: [
+          'Fundamentos CIA+A — Zero Trust e defesa em profundidade',
+          'ISO/IEC 27001:2022, 27002, 27005, 27035-1 e 22301',
+          'NIST SP 800-61 Rev.2 e LGPD aplicada à segurança',
+          'Gestão de vulnerabilidades, incidentes, BIA, DRP, RPO, RTO',
+          'IAM, RBAC, SSO, MFA, OAuth 2.0, OIDC, PKI, X.509, ICP-Brasil',
+          'Criptografia simétrica e assimétrica — HTTPS/TLS',
+          'Firewall/NGFW, IDS/IPS, WAF, VPN, NAT, SIEM, SOC, EDR',
+          'Tipos de ataques cibernéticos e estratégias de contenção — OWASP',
+          'Segurança em nuvem (ISO 27017), DevSecOps e SDL',
+          'IA em segurança — ataques e defesa',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'discursiva',
+    label: 'Discursiva',
+    badge: 'Peso 1 · 3q',
+    meta: '02/08/2026 · tarde · mín. 50 pts',
+    sections: [
+      {
+        name: 'Questão Dissertativa (30 pts)',
+        topics: [
+          'Domínio de conhecimentos específicos de TI/tributário',
+          'Texto coeso e coerente (mín. 15 linhas)',
+          'Ortografia e normas gramaticais vigentes',
+          'Argumentação com termos técnicos precisos',
+        ],
+      },
+      {
+        name: 'Estudos de Caso — 2 questões (35 pts cada)',
+        topics: [
+          'Aplicação prática de conhecimentos específicos de TI',
+          'Resolução estruturada (mín. 20 linhas por questão)',
+          'Interdisciplinaridade entre as disciplinas cobradas',
+          'Citação de normas, siglas e comandos exatos (ISO, SQL, BPMN)',
+          'Adequação ao cargo de Auditor-Fiscal de TI da SEFAZ-CE',
+        ],
+      },
+    ],
+  },
+];

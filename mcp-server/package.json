@@ -1,0 +1,20 @@
+{
+  "name": "gamesefaz-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for gameSEFAZ - Supabase gamification database",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsc && node dist/server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.7.0",
+    "@supabase/supabase-js": "^2.107.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}
