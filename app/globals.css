@@ -20,6 +20,13 @@
   --color-purple: #a78bfa;
   --color-purple-dim: rgba(167, 139, 250, 0.1);
 
+  /* Paleta Governo Federal */
+  --color-gov-green: #00D000;
+  --color-gov-green-dim: rgba(0, 208, 0, 0.08);
+  --color-gov-yellow: #FFD000;
+  --color-gov-yellow-dim: rgba(255, 208, 0, 0.08);
+  --color-gov-yellow-dark: #7a6200;
+
   --font-sans: "IBM Plex Sans", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 }

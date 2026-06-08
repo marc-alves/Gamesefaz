@@ -2,15 +2,51 @@ export interface HeaderProps {
   dominados: number;
   total: number;
   percentage: number;
+  contentMode?: boolean;
+  onToggleContentMode?: () => void;
+  contentCount?: number;
+  contentTotal?: number;
 }
 
-export default function Header({ dominados, total, percentage }: HeaderProps) {
+export default function Header({
+  dominados,
+  total,
+  percentage,
+  contentMode = false,
+  onToggleContentMode,
+  contentCount = 0,
+  contentTotal = 0,
+}: HeaderProps) {
+  const contentPct = contentTotal > 0 ? Math.round((contentCount / contentTotal) * 100) : 0;
+
   return (
     <header className="sticky top-0 z-40 bg-bg/95 border-b border-border backdrop-blur-xl py-3 px-4">
       <div className="flex items-center justify-between mb-2">
-        <span className="font-mono text-sm font-medium text-accent">
-          SEFAZ·CE · B02 TI
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-sm font-medium text-accent">
+            SEFAZ·CE · B02 TI
+          </span>
+          <button
+            onClick={onToggleContentMode}
+            title={contentMode ? "Desativar modo conteúdo" : "Ativar modo conteúdo"}
+            className="flex items-center gap-1 px-2 py-0.5 rounded-md border transition-all text-xs font-mono"
+            style={
+              contentMode
+                ? {
+                    borderColor: "var(--color-gov-green)",
+                    backgroundColor: "var(--color-gov-green-dim)",
+                    color: "var(--color-gov-green)",
+                  }
+                : {
+                    borderColor: "var(--color-border2)",
+                    backgroundColor: "transparent",
+                    color: "var(--color-muted)",
+                  }
+            }
+          >
+            ✏️ {contentMode ? "conteúdo" : "conteúdo"}
+          </button>
+        </div>
         <div className="flex gap-3">
           <span className="font-mono text-xs text-muted">
             <span className="text-text font-medium">{dominados}</span> dom.
@@ -23,6 +59,8 @@ export default function Header({ dominados, total, percentage }: HeaderProps) {
           </span>
         </div>
       </div>
+
+      {/* Barra de progresso de dominados */}
       <div className="flex items-center gap-2">
         <div className="flex-1 h-1 bg-border2 rounded-full overflow-hidden">
           <div
@@ -32,6 +70,24 @@ export default function Header({ dominados, total, percentage }: HeaderProps) {
         </div>
         <span className="font-mono text-xs text-accent min-w-max">{percentage}%</span>
       </div>
+
+      {/* Barra de progresso de conteúdo (só no modo conteúdo) */}
+      {contentMode && (
+        <div className="flex items-center gap-2 mt-1.5">
+          <div className="flex-1 h-1 bg-border2 rounded-full overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-400 ease-out"
+              style={{
+                width: `${contentPct}%`,
+                backgroundColor: "var(--color-gov-green)",
+              }}
+            />
+          </div>
+          <span className="font-mono text-xs min-w-max" style={{ color: "var(--color-gov-green)" }}>
+            conteúdo: {contentCount}/{contentTotal} lições criadas ({contentPct}%)
+          </span>
+        </div>
+      )}
     </header>
   );
 }
