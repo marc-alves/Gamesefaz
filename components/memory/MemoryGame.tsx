@@ -8,7 +8,7 @@ import {
   virarCard,
   calcularEstatisticas,
 } from '@/lib/memory-game';
-import { useQuestoes } from '@/hooks/useQuestoes';
+import { useQuestoesHibrido } from '@/hooks/useQuestoesHibrido';
 
 interface MemoryGameProps {
   topico?: string;
@@ -21,7 +21,7 @@ export function MemoryGame({
   difficulty = 'medio',
   onGameEnd,
 }: MemoryGameProps) {
-  const { questoes } = useQuestoes(topico);
+  const { questoes, loading: questoesLoading, usingMock } = useQuestoesHibrido(topico);
   const [gameState, setGameState] = useState<MemoryGameState | null>(null);
   const [loading, setLoading] = useState(true);
   const [showStats, setShowStats] = useState(false);
@@ -35,6 +35,12 @@ export function MemoryGame({
       setLoading(false);
     }
   }, [questoes, difficulty]);
+
+  useEffect(() => {
+    if (!questoesLoading && questoes.length === 0) {
+      setLoading(false);
+    }
+  }, [questoesLoading, questoes]);
 
   if (loading || !gameState) {
     return (
@@ -70,29 +76,38 @@ export function MemoryGame({
     <div className="w-full p-4 md:p-6">
       {/* Header */}
       <div className="mb-6 md:mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-1 md:mb-2">Jogo da Memória</h2>
-        {topico && <p className="text-sm md:text-base text-gray-600 line-clamp-2">{topico}</p>}
+        <div className="flex items-center justify-between gap-2 mb-1 md:mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-white">Jogo da Memória</h2>
+          {usingMock && (
+            <span className="px-2 md:px-3 py-1 bg-yellow-700 border border-yellow-500 text-yellow-200 text-xs font-bold rounded-full">
+              📌 Mock
+            </span>
+          )}
+        </div>
+        {topico && (
+          <p className="text-sm md:text-base text-gray-300 line-clamp-2">{topico}</p>
+        )}
       </div>
 
       {/* Stats - Mobile: 2x2, Tablet+: 1x4 */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
-        <div className="bg-blue-50 p-3 md:p-4 rounded-lg">
-          <p className="text-xs md:text-sm text-gray-600">Movimentos</p>
-          <p className="text-xl md:text-2xl font-bold text-blue-600">{gameState.moves}</p>
+        <div className="bg-gradient-to-br from-blue-900 to-blue-800 p-3 md:p-4 rounded-xl border-2 border-blue-500 shadow-md">
+          <p className="text-xs md:text-sm text-blue-200 font-semibold">Movimentos</p>
+          <p className="text-2xl md:text-3xl font-bold text-blue-300">{gameState.moves}</p>
         </div>
-        <div className="bg-green-50 p-3 md:p-4 rounded-lg">
-          <p className="text-xs md:text-sm text-gray-600">Pares</p>
-          <p className="text-xl md:text-2xl font-bold text-green-600">
+        <div className="bg-gradient-to-br from-green-900 to-green-800 p-3 md:p-4 rounded-xl border-2 border-green-500 shadow-md">
+          <p className="text-xs md:text-sm text-green-200 font-semibold">Pares</p>
+          <p className="text-2xl md:text-3xl font-bold text-green-300">
             {gameState.matchedPairs.size}/{Math.ceil(gameState.cards.length / 2)}
           </p>
         </div>
-        <div className="bg-purple-50 p-3 md:p-4 rounded-lg">
-          <p className="text-xs md:text-sm text-gray-600">Pontos</p>
-          <p className="text-xl md:text-2xl font-bold text-purple-600">{gameState.score}</p>
+        <div className="bg-gradient-to-br from-purple-900 to-purple-800 p-3 md:p-4 rounded-xl border-2 border-purple-500 shadow-md">
+          <p className="text-xs md:text-sm text-purple-200 font-semibold">Pontos</p>
+          <p className="text-2xl md:text-3xl font-bold text-purple-300">{gameState.score}</p>
         </div>
-        <div className="bg-orange-50 p-3 md:p-4 rounded-lg">
-          <p className="text-xs md:text-sm text-gray-600">Dificuldade</p>
-          <p className="text-sm md:text-lg font-bold text-orange-600 capitalize">{difficulty}</p>
+        <div className="bg-gradient-to-br from-orange-900 to-orange-800 p-3 md:p-4 rounded-xl border-2 border-orange-500 shadow-md">
+          <p className="text-xs md:text-sm text-orange-200 font-semibold">Dificuldade</p>
+          <p className="text-lg md:text-2xl font-bold text-orange-300 capitalize">{difficulty}</p>
         </div>
       </div>
 
@@ -110,26 +125,26 @@ export function MemoryGame({
           ))}
         </div>
       ) : (
-        <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 md:p-8 rounded-lg mb-8">
-          <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6 text-center">
+        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6 md:p-8 rounded-xl mb-8 border-2 border-purple-500 shadow-lg">
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center">
             🎉 Parabéns! Você completou o jogo!
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-6">
-            <div>
-              <p className="text-xs md:text-sm text-gray-600">Pontuação Final</p>
-              <p className="text-3xl md:text-4xl font-bold text-purple-600">{stats.pontuacao}</p>
+            <div className="bg-gradient-to-br from-purple-900 to-purple-800 p-4 rounded-lg border border-purple-500">
+              <p className="text-xs md:text-sm text-purple-200">Pontuação Final</p>
+              <p className="text-3xl md:text-4xl font-bold text-purple-300">{stats.pontuacao}</p>
             </div>
-            <div>
-              <p className="text-xs md:text-sm text-gray-600">Movimentos</p>
-              <p className="text-3xl md:text-4xl font-bold text-blue-600">{stats.movimentos}</p>
+            <div className="bg-gradient-to-br from-blue-900 to-blue-800 p-4 rounded-lg border border-blue-500">
+              <p className="text-xs md:text-sm text-blue-200">Movimentos</p>
+              <p className="text-3xl md:text-4xl font-bold text-blue-300">{stats.movimentos}</p>
             </div>
-            <div>
-              <p className="text-xs md:text-sm text-gray-600">Tempo</p>
-              <p className="text-3xl md:text-4xl font-bold text-green-600">{stats.tempoTotal}</p>
+            <div className="bg-gradient-to-br from-green-900 to-green-800 p-4 rounded-lg border border-green-500">
+              <p className="text-xs md:text-sm text-green-200">Tempo</p>
+              <p className="text-3xl md:text-4xl font-bold text-green-300">{stats.tempoTotal}</p>
             </div>
-            <div>
-              <p className="text-xs md:text-sm text-gray-600">Taxa de Acerto</p>
-              <p className="text-3xl md:text-4xl font-bold text-orange-600">{stats.taxaAcerto}%</p>
+            <div className="bg-gradient-to-br from-orange-900 to-orange-800 p-4 rounded-lg border border-orange-500">
+              <p className="text-xs md:text-sm text-orange-200">Taxa de Acerto</p>
+              <p className="text-3xl md:text-4xl font-bold text-orange-300">{stats.taxaAcerto}%</p>
             </div>
           </div>
         </div>
@@ -139,14 +154,14 @@ export function MemoryGame({
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <button
           onClick={handleRestart}
-          className="px-4 md:px-6 py-2 md:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium text-sm md:text-base"
+          className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-br from-indigo-600 to-indigo-700 text-white rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition font-bold text-sm md:text-base shadow-lg border border-indigo-500"
         >
           {showStats ? '🔄 Novo Jogo' : '🔄 Reiniciar'}
         </button>
         {gameState.isGameOver && (
           <button
             onClick={() => setShowStats(false)}
-            className="px-4 md:px-6 py-2 md:py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition font-medium text-sm md:text-base"
+            className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-br from-gray-700 to-gray-800 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 transition font-bold text-sm md:text-base shadow-lg border border-gray-600"
           >
             ← Voltar
           </button>
@@ -174,19 +189,19 @@ function MemoryCardComponent({
       onClick={onClick}
       disabled={isMatched}
       className={`
-        relative w-full aspect-square p-3 md:p-4 rounded-lg font-semibold text-xs md:text-sm
-        transition-all duration-300 cursor-pointer
+        relative w-full aspect-square p-3 md:p-4 rounded-xl font-semibold text-xs md:text-sm
+        transition-all duration-300 cursor-pointer shadow-md hover:shadow-lg
         ${
           isFlipped
-            ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg'
-            : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+            ? 'bg-gradient-to-br from-indigo-700 via-purple-700 to-indigo-800 text-white border-2 border-indigo-500 shadow-lg'
+            : 'bg-gradient-to-br from-gray-700 to-gray-800 text-gray-300 hover:from-gray-600 hover:to-gray-700 border-2 border-gray-600'
         }
-        ${isMatched ? 'opacity-75 scale-95' : ''}
+        ${isMatched ? 'opacity-60 scale-95 bg-gradient-to-br from-green-600 to-emerald-700 border-green-500' : ''}
       `}
     >
       <div className="absolute inset-0 flex items-center justify-center p-2 md:p-4">
         {isFlipped ? (
-          <p className="text-center text-[0.65rem] md:text-xs line-clamp-3 break-words leading-tight">
+          <p className="text-center text-[0.65rem] md:text-xs line-clamp-3 break-words leading-tight font-bold">
             {card.content}
           </p>
         ) : (
