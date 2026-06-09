@@ -38,6 +38,12 @@ export default function BottomNav() {
         label="Banca"
         isActive={pathname === '/banca'}
       />
+      <NavItem
+        href="/memory-game"
+        icon="🧠"
+        label="Memória"
+        isActive={pathname === '/memory-game'}
+      />
     </nav>
   );
 }

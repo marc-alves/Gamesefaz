@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import BottomNav from '@/components/layout/BottomNav';
 import { PROVAS_MOCK } from '@/data/provas.mock';
 import LessonModal from '@/components/lesson/LessonModal';
+import TrainingModal from '@/components/lesson/TrainingModal';
 import { createClient } from '@/lib/supabase/client';
 
 const CONTENT_MODE_KEY = 'sefaz_content_mode';
@@ -18,6 +19,14 @@ export default function TrackerPage() {
     topicIndex: number;
     topicLabel: string;
     sectionName?: string;
+  } | null>(null);
+
+  const [trainingOpen, setTrainingOpen] = useState(false);
+  const [trainingSelected, setTrainingSelected] = useState<{
+    provaId: string;
+    sectionIndex: number;
+    topicIndex: number;
+    topicLabel: string;
   } | null>(null);
 
   const currentProva = PROVAS_MOCK.find((p) => p.id === currentProvaId);
@@ -117,6 +126,16 @@ export default function TrackerPage() {
   ) {
     setSelected({ provaId, sectionIndex, topicIndex, topicLabel, sectionName });
     setModalOpen(true);
+  }
+
+  function openTraining(
+    provaId: string,
+    sectionIndex: number,
+    topicIndex: number,
+    topicLabel: string
+  ) {
+    setTrainingSelected({ provaId, sectionIndex, topicIndex, topicLabel });
+    setTrainingOpen(true);
   }
 
   // ── Estilos do Modo Conteúdo ───────────────────────────────────────────────
@@ -247,12 +266,20 @@ export default function TrackerPage() {
                   >
                     {topic}
                   </span>
-                  <button
-                    className="text-xs px-2 py-1 border border-border2 rounded text-muted hover:text-purple hover:border-purple hover:bg-purple-dim transition-all"
-                    onClick={() => openQuiz(currentProva.id, si, ti, topic, section.name)}
-                  >
-                    quiz
-                  </button>
+                  <div className="flex gap-1 flex-shrink-0">
+                    <button
+                      className="text-xs px-2 py-1 border border-border2 rounded text-muted hover:text-purple hover:border-purple hover:bg-purple-dim transition-all"
+                      onClick={() => openQuiz(currentProva.id, si, ti, topic, section.name)}
+                    >
+                      quiz
+                    </button>
+                    <button
+                      className="text-xs px-2 py-1 border border-border2 rounded text-muted hover:text-warn hover:border-warn hover:bg-warn/5 transition-all"
+                      onClick={() => openTraining(currentProva.id, si, ti, topic)}
+                    >
+                      treino
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -271,6 +298,18 @@ export default function TrackerPage() {
           topicLabel={selected.topicLabel}
           sectionName={selected.sectionName}
           onClose={() => setModalOpen(false)}
+          onFinish={() => countDominados()}
+        />
+      )}
+
+      {trainingSelected && (
+        <TrainingModal
+          open={trainingOpen}
+          provaId={trainingSelected.provaId}
+          sectionIndex={trainingSelected.sectionIndex}
+          topicIndex={trainingSelected.topicIndex}
+          topicLabel={trainingSelected.topicLabel}
+          onClose={() => setTrainingOpen(false)}
           onFinish={() => countDominados()}
         />
       )}
