@@ -32,6 +32,7 @@
     "tier": 2,
     "requires": "figuras-fundamentais",
     "capacity": 2,
+    "surprise": true,
     "title": "Figuras Sutis",
     "subtitle": "Eufemismo, litote, antítese e paradoxo",
     "cats": {

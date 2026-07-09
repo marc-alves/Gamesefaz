@@ -185,7 +185,9 @@ function startLevel(level: LevelDef): void {
   );
 
   dom.subjectTag.textContent = `${level.subject} — ${level.tier === 2 ? "Fase 2" : "Fase 1"}`;
-  dom.levelHeading.textContent = `${level.title} — toque numa peça e depois no pote certo`;
+  dom.levelHeading.textContent = level.surprise
+    ? `${level.title} — toque numa peça e depois no pote certo (os potes trocam de lugar a cada partida!)`
+    : `${level.title} — toque numa peça e depois no pote certo`;
   buildBoard(level);
 
   dom.endScreen.style.display = "none";
@@ -207,7 +209,10 @@ function startLevel(level: LevelDef): void {
 function buildBoard(level: LevelDef): void {
   dom.board.innerHTML = "";
   const frag = document.createDocumentFragment();
-  Object.keys(level.cats).forEach((cat, idx) => {
+  const catIds = level.surprise
+    ? [...Object.keys(level.cats)].sort(() => Math.random() - 0.5)
+    : Object.keys(level.cats);
+  catIds.forEach((cat, idx) => {
     const slot = COLOR_SLOTS[idx % COLOR_SLOTS.length];
     const pote = document.createElement("div");
     pote.className = "pote";

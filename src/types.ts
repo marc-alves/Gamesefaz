@@ -18,6 +18,7 @@ export interface LevelDef {
   subtitle: string;
   cats: Record<string, CategoryDef>;
   items: ItemDef[];
+  surprise?: boolean;
 }
 
 export interface ProgressEntry {

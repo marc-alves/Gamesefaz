@@ -1,0 +1,306 @@
+[
+  {
+    "id": "ti-cloud-servico",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Cloud Computing — Modelos de Serviço",
+    "subtitle": "IaaS, PaaS, SaaS e FaaS (NIST SP 800-145)",
+    "cats": {
+      "iaas": { "label": "IaaS", "block": "Infraestrutura como Serviço: o provedor entrega recursos computacionais brutos (VMs, storage, rede) e o cliente gerencia SO, runtime e aplicação, conforme NIST SP 800-145" },
+      "paas": { "label": "PaaS", "block": "Plataforma como Serviço: o provedor entrega o ambiente de execução (runtime, middleware, SO gerenciado) e o cliente só cuida da aplicação e dos dados" },
+      "saas": { "label": "SaaS", "block": "Software como Serviço: o provedor entrega a aplicação pronta pra uso final, sem o cliente gerenciar infraestrutura, plataforma ou o próprio código" },
+      "faas": { "label": "FaaS", "block": "Função como Serviço (serverless): o cliente entrega apenas funções isoladas, cobradas por execução, sem gerenciar servidor nem escalonamento" }
+    },
+    "items": [
+      { "text": "Provisionar máquinas virtuais e escolher o sistema operacional, deixando a manutenção física dos servidores a cargo do provedor", "cat": "iaas" },
+      { "text": "Alugar armazenamento em blocos e configurar a própria rede virtual dentro do provedor", "cat": "iaas" },
+      { "text": "Ser responsável por aplicar patches de segurança no sistema operacional das instâncias contratadas", "cat": "iaas" },
+      { "text": "Publicar o código de uma aplicação e deixar o provedor gerenciar o runtime e o balanceamento de carga", "cat": "paas" },
+      { "text": "Usar um ambiente gerenciado de banco de dados relacional sem administrar o servidor de banco", "cat": "paas" },
+      { "text": "Focar apenas no código da aplicação, sem se preocupar com atualização de middleware", "cat": "paas" },
+      { "text": "Acessar uma planilha online sem instalar nada e sem gerenciar servidor", "cat": "saas" },
+      { "text": "Usar um sistema de e-mail corporativo hospedado, pagando por usuário/mês", "cat": "saas" },
+      { "text": "Contratar um CRM pronto, acessado via navegador, sem tocar em código ou infraestrutura", "cat": "saas" },
+      { "text": "Executar um trecho de código disparado por um evento, sendo cobrado só pelo tempo de execução", "cat": "faas" },
+      { "text": "Não precisar provisionar nenhum servidor, nem para picos de tráfego, pois o provedor escala automaticamente", "cat": "faas" },
+      { "text": "Escrever apenas a lógica de uma função isolada, sem gerenciar processo, container ou máquina", "cat": "faas" }
+    ]
+  },
+  {
+    "id": "ti-cloud-implantacao",
+    "subject": "Tecnologia da Informação",
+    "tier": 2,
+    "requires": "ti-cloud-servico",
+    "capacity": 2,
+    "title": "Cloud Computing — Modelos de Implantação",
+    "subtitle": "Pública, privada, híbrida e comunitária",
+    "cats": {
+      "publica": { "label": "Nuvem Pública", "block": "Infraestrutura compartilhada entre múltiplos clientes (multi-tenant), operada por um provedor terceiro, com menor controle e menor custo inicial" },
+      "privada": { "label": "Nuvem Privada", "block": "Infraestrutura dedicada a uma única organização, on-premises ou hospedada por terceiro, com maior controle e maior custo" },
+      "hibrida": { "label": "Nuvem Híbrida", "block": "Combinação de nuvem privada e pública com integração e portabilidade entre elas, permitindo mover cargas conforme a necessidade" },
+      "comunitaria": { "label": "Nuvem Comunitária", "block": "Infraestrutura compartilhada por organizações com interesses ou requisitos comuns (ex: regulatórios), sem ser aberta ao público em geral" }
+    },
+    "items": [
+      { "text": "Provedor multi-tenant onde várias empresas compartilham a mesma infraestrutura física subjacente", "cat": "publica" },
+      { "text": "Modelo com menor investimento inicial em hardware, pago por uso", "cat": "publica" },
+      { "text": "Menor controle sobre a localização física dos dados, dependendo do provedor", "cat": "publica" },
+      { "text": "Infraestrutura dedicada exclusivamente a uma única organização, mesmo se hospedada fora do próprio data center", "cat": "privada" },
+      { "text": "Escolhida por instituições financeiras que exigem controle total por questões regulatórias", "cat": "privada" },
+      { "text": "Maior custo de operação, mas maior previsibilidade de desempenho e segurança", "cat": "privada" },
+      { "text": "Parte da carga roda on-premises e outra parte é estourada (cloud bursting) pra nuvem pública em picos de demanda", "cat": "hibrida" },
+      { "text": "Exige integração e portabilidade de dados entre ambientes diferentes", "cat": "hibrida" },
+      { "text": "Usada pra manter dados sensíveis on-premises e processamento não sensível na nuvem pública", "cat": "hibrida" },
+      { "text": "Várias universidades públicas compartilham uma mesma infraestrutura de nuvem com requisitos de compliance comuns", "cat": "comunitaria" },
+      { "text": "Não é aberta ao público em geral, mas também não pertence a uma única organização", "cat": "comunitaria" },
+      { "text": "Organizações do mesmo setor dividem custos e requisitos de segurança específicos daquele setor", "cat": "comunitaria" }
+    ]
+  },
+  {
+    "id": "ti-modelagem-dimensional",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Modelagem de Dados — Star x Snowflake",
+    "subtitle": "Esquema estrela e floco de neve (metodologia Kimball)",
+    "cats": {
+      "fato": { "label": "Tabela Fato", "block": "Armazena as métricas do processo de negócio e as chaves estrangeiras pras dimensões, segundo a metodologia Kimball" },
+      "dimensao": { "label": "Tabela Dimensão", "block": "Armazena os atributos descritivos (contexto) usados pra filtrar e agrupar os fatos, como tempo, produto e cliente" },
+      "star": { "label": "Star Schema (Esquema Estrela)", "block": "Dimensões desnormalizadas, ligadas diretamente à tabela fato, priorizando simplicidade e performance de consulta" },
+      "snowflake": { "label": "Snowflake Schema (Floco de Neve)", "block": "Dimensões normalizadas em subtabelas relacionadas entre si, reduzindo redundância em troca de mais joins" }
+    },
+    "items": [
+      { "text": "Guarda o valor de vendas e as chaves estrangeiras para as dimensões produto, tempo e loja", "cat": "fato" },
+      { "text": "Cresce em volume muito mais rápido que as dimensões, pois recebe um registro por evento de negócio", "cat": "fato" },
+      { "text": "É o centro do modelo dimensional, ao redor do qual as dimensões se conectam", "cat": "fato" },
+      { "text": "Contém atributos descritivos como nome do produto, categoria e marca", "cat": "dimensao" },
+      { "text": "Costuma ser bem menor em volume de linhas do que a tabela fato", "cat": "dimensao" },
+      { "text": "É usada nas cláusulas de filtro e agrupamento das consultas analíticas", "cat": "dimensao" },
+      { "text": "A dimensão produto fica numa única tabela, sem desmembrar categoria e subcategoria em tabelas separadas", "cat": "star" },
+      { "text": "Prioriza consultas mais simples e rápidas, com menos joins", "cat": "star" },
+      { "text": "Aceita alguma redundância de dados na dimensão em troca de performance", "cat": "star" },
+      { "text": "A dimensão produto é dividida em tabelas separadas para categoria e subcategoria, todas normalizadas", "cat": "snowflake" },
+      { "text": "Reduz redundância de dados, mas aumenta a complexidade e o número de joins nas consultas", "cat": "snowflake" },
+      { "text": "Costuma ser usado quando o espaço em disco é mais crítico que a velocidade de consulta", "cat": "snowflake" }
+    ]
+  },
+  {
+    "id": "ti-scd",
+    "subject": "Tecnologia da Informação",
+    "tier": 2,
+    "requires": "ti-modelagem-dimensional",
+    "capacity": 2,
+    "title": "Modelagem de Dados — Slowly Changing Dimensions",
+    "subtitle": "SCD tipos 1, 2 e 3",
+    "cats": {
+      "scd1": { "label": "SCD Tipo 1", "block": "Sobrescreve o valor antigo pelo novo, sem manter histórico — simples, mas perde a rastreabilidade da mudança" },
+      "scd2": { "label": "SCD Tipo 2", "block": "Cria uma nova linha a cada mudança, preservando o histórico completo, geralmente com datas de vigência ou flag de registro atual" },
+      "scd3": { "label": "SCD Tipo 3", "block": "Mantém histórico limitado em colunas adicionais (ex: 'valor_atual' e 'valor_anterior'), sem criar novas linhas" }
+    },
+    "items": [
+      { "text": "O endereço do cliente é atualizado direto na mesma linha, perdendo o valor antigo", "cat": "scd1" },
+      { "text": "Não permite saber qual era o valor do atributo antes da última mudança", "cat": "scd1" },
+      { "text": "É a abordagem mais simples de implementar, mas inadequada quando o histórico importa pra análise", "cat": "scd1" },
+      { "text": "Uma nova linha é inserida com nova chave substituta a cada alteração, mantendo a linha antiga marcada como não vigente", "cat": "scd2" },
+      { "text": "Permite reconstruir o histórico completo de mudanças de um atributo ao longo do tempo", "cat": "scd2" },
+      { "text": "Costuma usar colunas de data_inicio, data_fim e flag_atual pra controlar a vigência de cada versão", "cat": "scd2" },
+      { "text": "Mantém apenas o valor atual e o valor imediatamente anterior em colunas separadas da mesma linha", "cat": "scd3" },
+      { "text": "Não cria novas linhas, mas também não guarda todo o histórico, só a última mudança", "cat": "scd3" },
+      { "text": "É uma solução intermediária entre a simplicidade do Tipo 1 e o histórico completo do Tipo 2", "cat": "scd3" }
+    ]
+  },
+  {
+    "id": "ti-observabilidade",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Observabilidade — Golden Signals",
+    "subtitle": "Latência, tráfego, erros e saturação",
+    "cats": {
+      "latencia": { "label": "Latência", "block": "Tempo que uma requisição leva pra ser atendida — deve ser medida separando requisições com sucesso das com erro" },
+      "trafego": { "label": "Tráfego", "block": "Medida de demanda sobre o sistema, como requisições por segundo ou volume de dados transmitido" },
+      "erros": { "label": "Erros", "block": "Taxa de requisições que falham, seja de forma explícita (código de erro) ou implícita (resposta incorreta com sucesso aparente)" },
+      "saturacao": { "label": "Saturação", "block": "O quão 'cheio' o sistema está em relação à sua capacidade — CPU, memória, I/O — indicando quanto resta antes de degradar" }
+    },
+    "items": [
+      { "text": "Tempo entre o envio de uma requisição HTTP e o recebimento da resposta", "cat": "latencia" },
+      { "text": "Deve ser medida separadamente para requisições bem-sucedidas e com erro, pois costumam ter perfis diferentes", "cat": "latencia" },
+      { "text": "Um aumento súbito pode indicar contenção de recursos antes mesmo de ocorrerem erros", "cat": "latencia" },
+      { "text": "Número de requisições por segundo recebidas por um serviço", "cat": "trafego" },
+      { "text": "Pode ser medido em volume de dados transferidos, não só em contagem de requisições", "cat": "trafego" },
+      { "text": "Usado pra dimensionar a capacidade necessária de um sistema", "cat": "trafego" },
+      { "text": "Percentual de requisições HTTP 5xx em relação ao total de requisições", "cat": "erros" },
+      { "text": "Inclui falhas silenciosas, como uma resposta 200 com conteúdo incorreto", "cat": "erros" },
+      { "text": "É um dos sinais mais diretos pra acionar um alerta de incidente", "cat": "erros" },
+      { "text": "Percentual de uso de CPU ou memória em relação ao limite disponível", "cat": "saturacao" },
+      { "text": "Indica o quão perto o sistema está de não conseguir atender mais carga", "cat": "saturacao" },
+      { "text": "Pode ser observado antes de gerar erros, funcionando como sinal de alerta antecipado", "cat": "saturacao" }
+    ]
+  },
+  {
+    "id": "ti-sli-slo-sla",
+    "subject": "Tecnologia da Informação",
+    "tier": 2,
+    "requires": "ti-observabilidade",
+    "capacity": 2,
+    "title": "Observabilidade — SLIs, SLOs, SLAs e Tracing",
+    "subtitle": "Métricas de confiabilidade e rastreamento distribuído",
+    "cats": {
+      "sli": { "label": "SLI (Service Level Indicator)", "block": "A métrica medida de fato, como a taxa de disponibilidade real observada num período" },
+      "slo": { "label": "SLO (Service Level Objective)", "block": "A meta interna que a equipe define pra um SLI, usada pra orientar decisões técnicas de priorização" },
+      "sla": { "label": "SLA (Service Level Agreement)", "block": "O acordo formal, geralmente contratual, com penalidades se o nível de serviço prometido ao cliente não for cumprido" },
+      "tracing": { "label": "Distributed Tracing", "block": "Rastreia uma requisição através de múltiplos serviços numa arquitetura distribuída, correlacionando spans por um trace ID único" }
+    },
+    "items": [
+      { "text": "A disponibilidade real medida no último mês foi de 99,95%", "cat": "sli" },
+      { "text": "É o dado bruto observado, sem nenhum compromisso associado a ele", "cat": "sli" },
+      { "text": "Alimenta o cálculo de orçamento de erro (error budget) usado pela equipe", "cat": "sli" },
+      { "text": "A equipe define internamente que a disponibilidade deve ficar acima de 99,9% por trimestre", "cat": "slo" },
+      { "text": "É uma meta interna, não necessariamente visível ou cobrável pelo cliente", "cat": "slo" },
+      { "text": "Serve de gatilho pra equipe priorizar confiabilidade sobre novas features quando o orçamento de erro se esgota", "cat": "slo" },
+      { "text": "O contrato promete 99,5% de disponibilidade ao cliente, com multa em caso de descumprimento", "cat": "sla" },
+      { "text": "É um compromisso formal e externo, normalmente menos rígido que o SLO interno da equipe", "cat": "sla" },
+      { "text": "Costuma ter cláusulas de penalidade financeira caso não seja cumprido", "cat": "sla" },
+      { "text": "Cada requisição recebe um trace ID único que é propagado por todos os microsserviços envolvidos", "cat": "tracing" },
+      { "text": "Permite identificar em qual serviço específico está o gargalo de latência numa cadeia de chamadas", "cat": "tracing" },
+      { "text": "Os spans individuais de cada serviço são correlacionados pelo mesmo trace ID pra reconstruir o caminho da requisição", "cat": "tracing" }
+    ]
+  },
+  {
+    "id": "ti-arquitetura-monolito-micro",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Arquitetura de Software — Monolito x Microsserviços",
+    "subtitle": "Trade-offs, BFF e API Gateway",
+    "cats": {
+      "monolito": { "label": "Monolito", "block": "Aplicação única, com todos os módulos empacotados e implantados juntos — mais simples no início, mas escala e evolui pior conforme cresce" },
+      "microsservicos": { "label": "Microsserviços", "block": "Aplicação dividida em serviços independentes, implantados separadamente, com maior complexidade operacional em troca de escalabilidade" },
+      "bff": { "label": "BFF (Backend for Frontend)", "block": "Camada de backend dedicada a um tipo específico de cliente, agregando e adaptando dados de múltiplos serviços pra esse consumidor" },
+      "apigateway": { "label": "API Gateway", "block": "Ponto único de entrada que roteia requisições aos serviços internos, cuidando de autenticação, rate limiting e logging" }
+    },
+    "items": [
+      { "text": "Todo o código é implantado como um único artefato, facilitando testes de ponta a ponta no início do projeto", "cat": "monolito" },
+      { "text": "Um bug numa funcionalidade pode exigir reimplantar a aplicação inteira", "cat": "monolito" },
+      { "text": "Escalar significa replicar a aplicação inteira, mesmo que só um módulo esteja sob carga alta", "cat": "monolito" },
+      { "text": "Cada serviço pode ser escalado independentemente, conforme sua própria demanda", "cat": "microsservicos" },
+      { "text": "Times diferentes podem implantar seus serviços de forma independente, sem coordenar um deploy único", "cat": "microsservicos" },
+      { "text": "Aumenta a complexidade operacional, exigindo observabilidade e comunicação entre serviços", "cat": "microsservicos" },
+      { "text": "Existe um backend dedicado só pra agregar dados pro app mobile, formatado do jeito que a tela mobile precisa", "cat": "bff" },
+      { "text": "Evita que o cliente frontend precise fazer múltiplas chamadas a serviços diferentes e agregar os dados sozinho", "cat": "bff" },
+      { "text": "Cada tipo de cliente (web, mobile) pode ter seu próprio BFF, adaptado às suas necessidades específicas", "cat": "bff" },
+      { "text": "Centraliza autenticação e autorização antes de rotear a requisição pro microsserviço correto", "cat": "apigateway" },
+      { "text": "Aplica rate limiting de forma uniforme pra todos os serviços internos, num único ponto", "cat": "apigateway" },
+      { "text": "Roteia a requisição externa pro serviço interno correto, escondendo a topologia interna do cliente", "cat": "apigateway" }
+    ]
+  },
+  {
+    "id": "ti-cqrs-event-sourcing",
+    "subject": "Tecnologia da Informação",
+    "tier": 2,
+    "requires": "ti-arquitetura-monolito-micro",
+    "capacity": 2,
+    "surprise": true,
+    "title": "Arquitetura de Software — CQRS e Event Sourcing",
+    "subtitle": "Separação de comando/consulta e histórico de eventos",
+    "cats": {
+      "command": { "label": "Command Model (CQRS)", "block": "Modelo de escrita do CQRS, responsável por validar e aplicar mudanças de estado — otimizado pra consistência, não pra leitura rápida" },
+      "query": { "label": "Query Model (CQRS)", "block": "Modelo de leitura do CQRS, geralmente uma view materializada otimizada pra consulta, desacoplada do modelo de escrita" },
+      "eventsourcing": { "label": "Event Sourcing", "block": "Persiste o estado como uma sequência imutável de eventos, em vez de guardar só o estado atual — o estado é derivado reproduzindo os eventos" },
+      "projecao": { "label": "Projeção / Snapshot", "block": "Uma visão derivada, construída a partir da reprodução (replay) dos eventos, usada pra evitar reprocessar todo o histórico a cada leitura" }
+    },
+    "items": [
+      { "text": "Recebe a intenção de alterar um pedido e valida as regras de negócio antes de aplicar a mudança", "cat": "command" },
+      { "text": "É otimizado pra garantir consistência na escrita, não pra velocidade de leitura", "cat": "command" },
+      { "text": "Pode usar um modelo de dados diferente do usado pra consultas, no mesmo sistema CQRS", "cat": "command" },
+      { "text": "Serve dados já formatados e desnormalizados, prontos pra exibição, sem precisar de joins complexos", "cat": "query" },
+      { "text": "Pode ficar levemente desatualizado em relação à escrita mais recente, dependendo da propagação", "cat": "query" },
+      { "text": "É otimizado pra velocidade de leitura, podendo ser uma cópia derivada do modelo de escrita", "cat": "query" },
+      { "text": "O saldo de uma conta é calculado somando todos os eventos de depósito e saque já ocorridos, não lido de um campo 'saldo_atual'", "cat": "eventsourcing" },
+      { "text": "Cada mudança de estado é registrada como um evento imutável, nunca apagado ou sobrescrito", "cat": "eventsourcing" },
+      { "text": "Permite reconstruir o estado de um objeto em qualquer ponto do passado, reproduzindo os eventos até aquele momento", "cat": "eventsourcing" },
+      { "text": "Um snapshot periódico evita ter que reprocessar todos os eventos desde o início toda vez que o estado é consultado", "cat": "projecao" },
+      { "text": "É uma visão derivada, não a fonte da verdade — a fonte da verdade continua sendo o log de eventos", "cat": "projecao" },
+      { "text": "Pode ser reconstruída do zero a qualquer momento, reproduzindo o histórico de eventos novamente", "cat": "projecao" }
+    ]
+  },
+  {
+    "id": "ti-redes-infra",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Redes e Infraestrutura — AWS VPC e Escalabilidade",
+    "subtitle": "VPC, Availability Zones e escala horizontal x vertical",
+    "cats": {
+      "vpc": { "label": "VPC (Virtual Private Cloud)", "block": "Rede virtual isolada logicamente dentro da nuvem, onde o cliente define sub-redes, rotas e regras de acesso" },
+      "az": { "label": "Availability Zone", "block": "Data center (ou conjunto deles) fisicamente isolado dentro de uma região, com energia e rede independentes, usado pra tolerância a falhas" },
+      "horizontal": { "label": "Escala Horizontal", "block": "Aumenta a capacidade adicionando mais instâncias/máquinas, distribuindo a carga entre elas" },
+      "vertical": { "label": "Escala Vertical", "block": "Aumenta a capacidade de uma única instância, adicionando mais CPU, memória ou disco a ela" }
+    },
+    "items": [
+      { "text": "O cliente define suas próprias sub-redes públicas e privadas dentro do espaço de endereçamento IP reservado", "cat": "vpc" },
+      { "text": "Permite isolar logicamente os recursos de uma aplicação dos recursos de outros clientes na mesma nuvem", "cat": "vpc" },
+      { "text": "As regras de segurança e roteamento são configuradas pelo próprio cliente dentro desse limite lógico", "cat": "vpc" },
+      { "text": "Distribuir instâncias em zonas diferentes dentro da mesma região pra tolerar a queda de um data center inteiro", "cat": "az" },
+      { "text": "Zonas de disponibilidade de uma mesma região têm energia e rede fisicamente independentes entre si", "cat": "az" },
+      { "text": "Uma aplicação multi-AZ continua no ar mesmo se uma das zonas ficar indisponível", "cat": "az" },
+      { "text": "Aumentar a capacidade duplicando o número de instâncias por trás de um balanceador de carga", "cat": "horizontal" },
+      { "text": "Se uma instância falhar, as outras continuam atendendo, sem interromper o serviço inteiro", "cat": "horizontal" },
+      { "text": "Costuma exigir que a aplicação seja stateless, pra que qualquer instância possa atender qualquer requisição", "cat": "horizontal" },
+      { "text": "Aumentar a capacidade trocando o tipo de instância por um com mais vCPU e memória", "cat": "vertical" },
+      { "text": "Tem um limite físico de quanto se pode aumentar uma única máquina", "cat": "vertical" },
+      { "text": "Geralmente exige um período de indisponibilidade durante a troca do tipo de instância", "cat": "vertical" }
+    ]
+  },
+  {
+    "id": "ti-seguranca",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Segurança da Informação — Princípios",
+    "subtitle": "Confidencialidade, integridade, disponibilidade e autenticidade",
+    "cats": {
+      "confidencialidade": { "label": "Confidencialidade", "block": "Garante que a informação só seja acessada por quem tem autorização, tipicamente via controle de acesso e criptografia" },
+      "integridade": { "label": "Integridade", "block": "Garante que a informação não seja alterada de forma não autorizada, detectável por hashes e assinaturas" },
+      "disponibilidade": { "label": "Disponibilidade", "block": "Garante que a informação e os sistemas estejam acessíveis quando necessário, sendo o alvo direto de ataques de negação de serviço" },
+      "autenticidade": { "label": "Autenticidade", "block": "Garante que a origem da informação é genuína e pode ser verificada, tipicamente via assinatura digital ou certificado" }
+    },
+    "items": [
+      { "text": "Criptografar dados em repouso pra que só quem tem a chave consiga lê-los", "cat": "confidencialidade" },
+      { "text": "Restringir o acesso a um arquivo apenas aos usuários autorizados, mesmo que outros tenham acesso ao sistema", "cat": "confidencialidade" },
+      { "text": "Um vazamento de dados sigilosos é, antes de tudo, uma quebra desse princípio", "cat": "confidencialidade" },
+      { "text": "Usar hash criptográfico pra detectar se um arquivo foi alterado durante a transmissão", "cat": "integridade" },
+      { "text": "Um ataque que modifica valores de uma transação bancária em trânsito, sem autorização, viola esse princípio", "cat": "integridade" },
+      { "text": "Assinaturas digitais ajudam a garantir que o conteúdo não foi alterado após ser assinado", "cat": "integridade" },
+      { "text": "Um ataque de negação de serviço (DDoS) que tira um sistema do ar ataca diretamente esse princípio", "cat": "disponibilidade" },
+      { "text": "Redundância de servidores e balanceamento de carga são medidas típicas pra proteger esse princípio", "cat": "disponibilidade" },
+      { "text": "Um sistema seguro, mas que fica fora do ar com frequência, falha nesse princípio", "cat": "disponibilidade" },
+      { "text": "Verificar, por meio de um certificado digital, que uma mensagem realmente veio de quem diz ter enviado", "cat": "autenticidade" },
+      { "text": "Uma assinatura digital comprova a origem do documento, distinto de apenas garantir que ele não foi alterado", "cat": "autenticidade" },
+      { "text": "Um ataque de phishing que se passa por um remetente legítimo tenta justamente burlar esse princípio", "cat": "autenticidade" }
+    ]
+  },
+  {
+    "id": "ti-acid-base",
+    "subject": "Tecnologia da Informação",
+    "tier": 2,
+    "requires": "ti-modelagem-dimensional",
+    "capacity": 2,
+    "title": "Banco de Dados — ACID x BASE",
+    "subtitle": "Consistência forte x consistência eventual em transações",
+    "cats": {
+      "acid_atomicidade": { "label": "ACID — Atomicidade", "block": "Uma transação é tudo ou nada: se uma parte falha, toda a transação é desfeita, típico de bancos relacionais com forte consistência" },
+      "acid_consistencia": { "label": "ACID — Consistência", "block": "A transação leva o banco de um estado válido a outro estado válido, respeitando as regras e restrições definidas no schema" },
+      "base_available": { "label": "BASE — Basically Available", "block": "O sistema garante disponibilidade mesmo em cenário de falha parcial, priorizando responder algo a estar sempre 100% correto na hora" },
+      "base_eventual": { "label": "BASE — Eventually Consistent", "block": "As réplicas podem divergir temporariamente após uma escrita, mas convergem pro mesmo valor com o tempo, sem garantia de consistência imediata" }
+    },
+    "items": [
+      { "text": "Uma transferência bancária que debita de uma conta e credita em outra: se o crédito falhar, o débito também é revertido", "cat": "acid_atomicidade" },
+      { "text": "Não existe estado intermediário visível onde só parte da transação foi aplicada", "cat": "acid_atomicidade" },
+      { "text": "É a propriedade que garante que uma falha no meio do processo não deixa o banco num estado parcialmente atualizado", "cat": "acid_atomicidade" },
+      { "text": "Uma restrição de chave estrangeira impede que a transação finalize deixando uma referência inválida no banco", "cat": "acid_consistencia" },
+      { "text": "Garante que toda transação, ao terminar, deixa o banco respeitando as regras de integridade definidas no schema", "cat": "acid_consistencia" },
+      { "text": "Diferente da 'consistência' do CAP theorem, aqui se refere às regras de negócio e integridade do schema", "cat": "acid_consistencia" },
+      { "text": "Um sistema distribuído responde a uma leitura mesmo que um dos nós esteja fora do ar, ainda que com dado potencialmente desatualizado", "cat": "base_available" },
+      { "text": "Prioriza responder alguma coisa a não responder nada, mesmo sob falha parcial", "cat": "base_available" },
+      { "text": "Costuma ser a escolha de bancos NoSQL otimizados pra alta disponibilidade em detrimento de consistência imediata", "cat": "base_available" },
+      { "text": "Logo após uma escrita, uma réplica em outra região pode devolver o valor antigo por um instante", "cat": "base_eventual" },
+      { "text": "Não há garantia de que uma leitura logo após a escrita retorne o valor mais recente", "cat": "base_eventual" },
+      { "text": "Com o tempo, e sem novas escritas, todas as réplicas convergem para o mesmo valor", "cat": "base_eventual" }
+    ]
+  }
+]
