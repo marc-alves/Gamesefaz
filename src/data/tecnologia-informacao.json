@@ -302,5 +302,178 @@
       { "text": "Não há garantia de que uma leitura logo após a escrita retorne o valor mais recente", "cat": "base_eventual" },
       { "text": "Com o tempo, e sem novas escritas, todas as réplicas convergem para o mesmo valor", "cat": "base_eventual" }
     ]
+  },
+  {
+    "id": "ti-formas-normais",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Banco de Dados — Formas Normais",
+    "subtitle": "1FN, 2FN, 3FN e desnormalização",
+    "cats": {
+      "1fn": { "label": "1ª Forma Normal (1FN)", "block": "Elimina grupos repetitivos: cada célula da tabela guarda um único valor atômico" },
+      "2fn": { "label": "2ª Forma Normal (2FN)", "block": "Já está na 1FN e todo atributo não-chave depende da chave primária inteira, não só de parte dela (elimina dependência parcial)" },
+      "3fn": { "label": "3ª Forma Normal (3FN)", "block": "Já está na 2FN e nenhum atributo não-chave depende de outro atributo não-chave (elimina dependência transitiva)" },
+      "desnormalizacao": { "label": "Desnormalização", "block": "Reintroduzir redundância de propósito, geralmente pra ganhar performance de leitura" }
+    },
+    "items": [
+      { "text": "Uma coluna que guarda 'João, Maria' numa célula só ainda não está nessa forma normal", "cat": "1fn" },
+      { "text": "Só é relevante avaliar quando a chave primária é composta (mais de uma coluna)", "cat": "2fn" },
+      { "text": "Se 'cidade' depende de 'CEP', que depende da chave, essa dependência transitiva viola essa forma normal", "cat": "3fn" },
+      { "text": "Comum em data warehouses (star schema), onde a leitura importa mais que evitar redundância", "cat": "desnormalizacao" }
+    ]
+  },
+  {
+    "id": "ti-redes-osi",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Redes — Modelo OSI",
+    "subtitle": "As 7 camadas e o encapsulamento",
+    "cats": {
+      "fisica": { "label": "Camada Física", "block": "Transmite bits crus através de um meio físico (cabo, fibra, rádio) — não sabe nada sobre endereços ou dados" },
+      "enlace": { "label": "Camada de Enlace", "block": "Organiza bits em quadros e usa endereço MAC pra comunicação entre dispositivos na mesma rede local — switches operam aqui" },
+      "rede": { "label": "Camada de Rede", "block": "Roteia pacotes entre redes diferentes usando endereço IP — roteadores operam aqui" },
+      "transporte": { "label": "Camada de Transporte", "block": "Garante (ou não) entrega confiável entre aplicações usando portas — é onde ficam TCP e UDP" },
+      "aplicacao": { "label": "Camada de Aplicação", "block": "Onde protocolos como HTTP, DNS e SMTP interagem diretamente com o usuário/aplicação final" }
+    },
+    "items": [
+      { "text": "Só entende sinais elétricos/ópticos, sem noção nenhuma de endereço", "cat": "fisica" },
+      { "text": "Usa endereço MAC pra entregar quadros dentro da mesma rede local", "cat": "enlace" },
+      { "text": "Usa endereço IP pra rotear pacotes entre redes diferentes", "cat": "rede" },
+      { "text": "TCP e UDP vivem nessa camada, cuidando de portas e (não) confiabilidade", "cat": "transporte" },
+      { "text": "HTTP, DNS e SMTP são protocolos dessa camada, a mais próxima do usuário", "cat": "aplicacao" }
+    ]
+  },
+  {
+    "id": "ti-tcp-udp",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Redes — TCP x UDP",
+    "subtitle": "Confiabilidade, conexão e controle de fluxo",
+    "cats": {
+      "tcp_conexao": { "label": "TCP — Orientado à Conexão", "block": "Estabelece a conexão via three-way handshake (SYN, SYN-ACK, ACK) antes de trocar dados" },
+      "tcp_confiavel": { "label": "TCP — Confiável", "block": "Garante entrega e ordem correta dos pacotes, reenviando o que se perde — tem custo de overhead e latência" },
+      "udp_sem_garantia": { "label": "UDP — Sem Garantias", "block": "Não garante entrega, ordem nem retransmissão — envia e não olha pra trás, por isso é mais rápido e leve" },
+      "controle_fluxo": { "label": "Controle de Fluxo (exclusivo do TCP)", "block": "Ajusta a taxa de envio pra não sobrecarregar o receptor mais lento — o UDP não tem esse mecanismo" }
+    },
+    "items": [
+      { "text": "Precisa do handshake SYN, SYN-ACK, ACK antes de qualquer dado trafegar", "cat": "tcp_conexao" },
+      { "text": "Reenvia pacotes perdidos pra garantir que tudo chegue e na ordem certa", "cat": "tcp_confiavel" },
+      { "text": "É a escolha natural pra streaming ao vivo e jogos online, onde velocidade importa mais que garantia", "cat": "udp_sem_garantia" },
+      { "text": "Sem esse mecanismo, um receptor lento poderia ser inundado de dados que não consegue processar", "cat": "controle_fluxo" }
+    ]
+  },
+  {
+    "id": "ti-criptografia",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Segurança — Criptografia Simétrica x Assimétrica",
+    "subtitle": "Chaves, assinatura digital e hash",
+    "cats": {
+      "simetrica": { "label": "Criptografia Simétrica", "block": "Usa a mesma chave pra criptografar e descriptografar — mais rápida, mas exige compartilhar a chave com segurança antes" },
+      "assimetrica": { "label": "Criptografia Assimétrica", "block": "Usa um par de chaves: pública (cifra) e privada (decifra) — resolve o problema de troca de chave, mas é mais lenta" },
+      "assinatura": { "label": "Assinatura Digital", "block": "Cifra-se um hash da mensagem com a chave privada do remetente; qualquer um verifica com a chave pública dele" },
+      "hash": { "label": "Função Hash", "block": "Gera um valor de tamanho fixo a partir de uma entrada, de forma irreversível — não é criptografia, não se 'decifra' um hash" }
+    },
+    "items": [
+      { "text": "Exige um jeito seguro de combinar a mesma chave entre remetente e destinatário antes de trocar mensagens", "cat": "simetrica" },
+      { "text": "A chave pública pode ser compartilhada livremente; só a privada correspondente decifra", "cat": "assimetrica" },
+      { "text": "Garante autenticidade e não repúdio — o inverso do uso normal de chave pública/privada pra sigilo", "cat": "assinatura" },
+      { "text": "Usado pra verificar integridade de um arquivo, não pra esconder o conteúdo original", "cat": "hash" }
+    ]
+  },
+  {
+    "id": "ti-cobit",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Governança de TI — COBIT",
+    "subtitle": "Governança x gestão e a cascata de objetivos",
+    "cats": {
+      "proposito": { "label": "Propósito do COBIT", "block": "Framework de governança de TI focado em alinhar objetivos de TI aos objetivos do negócio" },
+      "governanca_gestao": { "label": "Governança x Gestão", "block": "Governança avalia, direciona e monitora (alta administração); gestão planeja, constrói, executa e monitora no dia a dia" },
+      "principios": { "label": "Princípios do COBIT 2019", "block": "Fornecer valor às partes interessadas, visão holística, sistema de governança dinâmico, distinção entre governança e gestão" },
+      "cascata": { "label": "Cascata de Objetivos", "block": "Traduz necessidades das partes interessadas em objetivos corporativos, depois de TI, depois de processos" }
+    },
+    "items": [
+      { "text": "Não é sobre 'como fazer TI', é sobre governar e gerenciar TI alinhado à estratégia do negócio", "cat": "proposito" },
+      { "text": "É a distinção mais cobrada do framework: são papéis diferentes, não sinônimos", "cat": "governanca_gestao" },
+      { "text": "O COBIT 2019 trouxe mais flexibilidade que versões anteriores, com fatores de design", "cat": "principios" },
+      { "text": "É o mecanismo que garante que TI realmente sirva ao negócio, não o contrário", "cat": "cascata" }
+    ]
+  },
+  {
+    "id": "ti-itil",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Governança de TI — ITIL",
+    "subtitle": "Incidente, problema e mudança",
+    "cats": {
+      "proposito": { "label": "Propósito do ITIL", "block": "Framework de boas práticas pra gerenciamento de serviços de TI (ITSM), focado na operação e entrega" },
+      "incidente": { "label": "Gerenciamento de Incidente", "block": "Restaurar o serviço normal o mais rápido possível após uma interrupção não planejada" },
+      "problema": { "label": "Gerenciamento de Problema", "block": "Identificar e eliminar a causa raiz de incidentes recorrentes, prevenindo que aconteçam de novo" },
+      "mudanca": { "label": "Gerenciamento de Mudança", "block": "Controla e avalia riscos de alterações no ambiente de TI antes de serem implementadas" }
+    },
+    "items": [
+      { "text": "Enquanto o COBIT foca em governança ampla, esse framework foca na operação e entrega de serviços de TI", "cat": "proposito" },
+      { "text": "O foco é velocidade de restauração, não necessariamente descobrir a causa raiz", "cat": "incidente" },
+      { "text": "Diferença clássica de prova: um resolve o sintoma rápido, o outro ataca a causa", "cat": "problema" },
+      { "text": "Evita que uma 'melhoria' vire um incidente novo por falta de avaliação de impacto", "cat": "mudanca" }
+    ]
+  },
+  {
+    "id": "ti-scrum",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Engenharia de Software — Scrum",
+    "subtitle": "Papéis, eventos e artefatos",
+    "cats": {
+      "product_owner": { "label": "Product Owner", "block": "Responsável por maximizar o valor do produto e gerenciar o Product Backlog — prioriza, não gerencia a equipe" },
+      "scrum_master": { "label": "Scrum Master", "block": "Garante que o time entenda e siga as práticas do Scrum, removendo impedimentos — facilitador, não gerente de projeto" },
+      "sprint": { "label": "Sprint", "block": "Período fixo (geralmente 1 a 4 semanas) em que um incremento potencialmente utilizável é criado" },
+      "daily_scrum": { "label": "Daily Scrum", "block": "Evento diário de até 15 minutos pro time inspecionar o progresso e replanejar o trabalho do dia" }
+    },
+    "items": [
+      { "text": "É quem prioriza o que entra no backlog, não quem gerencia a equipe de desenvolvimento", "cat": "product_owner" },
+      { "text": "Não é 'gerente de projeto' tradicional — remove impedimentos pro time seguir o processo", "cat": "scrum_master" },
+      { "text": "Duração fixa é característica-chave — não se estende no meio do caminho", "cat": "sprint" },
+      { "text": "Não é status report pro chefe — é planejamento do próprio time de desenvolvimento", "cat": "daily_scrum" }
+    ]
+  },
+  {
+    "id": "ti-big-o",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Estruturas de Dados — Complexidade (Big O)",
+    "subtitle": "De O(1) a O(2ⁿ)",
+    "cats": {
+      "constante": { "label": "O(1) — Constante", "block": "Tempo de execução não muda com o tamanho da entrada — ex: acessar um elemento de array pelo índice" },
+      "logaritmica": { "label": "O(log n) — Logarítmica", "block": "Cresce muito devagar; cada passo elimina metade das opções restantes — ex: busca binária" },
+      "linear": { "label": "O(n) — Linear", "block": "Tempo cresce proporcionalmente ao tamanho da entrada — ex: percorrer uma lista uma vez" },
+      "quadratica": { "label": "O(n²) — Quadrática", "block": "Tempo cresce com o quadrado da entrada — ex: dois laços aninhados percorrendo a mesma lista" }
+    },
+    "items": [
+      { "text": "É a complexidade mais desejável possível, independente do tamanho da entrada", "cat": "constante" },
+      { "text": "Só funciona em estrutura ordenada (array ordenado, árvore balanceada), como na busca binária", "cat": "logaritmica" },
+      { "text": "Um laço simples sem laço aninhado, na maioria dos casos, tem essa complexidade", "cat": "linear" },
+      { "text": "Fica inviável rápido: dobrar a entrada quadruplica o tempo, como no Bubble Sort", "cat": "quadratica" }
+    ]
+  },
+  {
+    "id": "ti-git",
+    "subject": "Tecnologia da Informação",
+    "tier": 1,
+    "title": "Versionamento — Git",
+    "subtitle": "Commit, branch, merge e rebase",
+    "cats": {
+      "commit": { "label": "git commit", "block": "Salva as alterações preparadas (staged) como um novo ponto no histórico do repositório" },
+      "branch": { "label": "Branch (ramificação)", "block": "Linha de desenvolvimento independente, permitindo trabalhar em algo sem afetar a linha principal" },
+      "merge": { "label": "git merge", "block": "Combina o histórico de duas branches, criando um commit de junção quando necessário — preserva o histórico completo" },
+      "rebase": { "label": "git rebase", "block": "Reaplica os commits de uma branch sobre outra, criando um histórico linear, sem commit de merge" }
+    },
+    "items": [
+      { "text": "Só grava o que foi adicionado com 'git add' antes — não pega mudanças soltas no diretório de trabalho", "cat": "commit" },
+      { "text": "É o que permite trabalhar numa feature sem quebrar o código de produção", "cat": "branch" },
+      { "text": "Preserva o histórico completo de ambas as branches, diferente do rebase", "cat": "merge" },
+      { "text": "Deixa o histórico mais limpo, mas reescreve commits — cuidado em branches compartilhadas", "cat": "rebase" }
+    ]
   }
 ]

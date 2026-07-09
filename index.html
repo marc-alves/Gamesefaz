@@ -12,7 +12,6 @@
   <div id="menu-view">
     <h1>Jogo das cores</h1>
     <p id="daily-pointer" style="font-size:12px;color:var(--text-secondary);margin:0 0 0.5rem;"></p>
-    <button id="goto-memory-btn" style="width:100%;margin-bottom:0.75rem;">🧠 Jogo da Memória</button>
     <p style="color:var(--text-secondary);font-size:13px;margin-bottom:0.5rem;">Escolha uma fase pra treinar. A Fase 2 de cada matéria libera depois que você terminar a Fase 1.</p>
     <div id="level-list"></div>
   </div>
@@ -45,34 +44,6 @@
       <div class="btn-row">
         <button id="restart-btn">Jogar de novo</button>
         <button id="menu-btn">Menu</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="memory-menu-view" style="display:none;">
-    <button class="back-btn" id="memory-back-to-main-btn">&larr; Menu</button>
-    <h1>Jogo da Memória</h1>
-    <p style="color:var(--text-secondary);font-size:13px;margin-bottom:0.75rem;">Vire duas cartas e ache o par certo. Toque numa carta virada pra fechar de novo.</p>
-    <div id="memory-deck-list"></div>
-  </div>
-
-  <div id="memory-game-view" style="display:none;">
-    <button class="back-btn" id="memory-back-btn">&larr; Decks</button>
-    <p class="subject-tag" id="memory-topic-tag"></p>
-    <p id="memory-heading" style="font-size:13px;color:var(--text-secondary);margin-bottom:0.5rem;"></p>
-    <p id="memory-attempts-label" style="font-size:13px;color:var(--text-secondary);margin:0 0 0.75rem;"></p>
-
-    <div id="memory-board" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:0.75rem;"></div>
-
-    <p id="memory-feedback" style="font-size:13px;color:var(--text-secondary);min-height:50px;margin:0 0 0.5rem;"></p>
-
-    <div id="memory-end-screen" style="display:none;text-align:center;padding:1rem 0;">
-      <p class="subject-tag" id="memory-end-topic-tag" style="text-align:left;"></p>
-      <p style="font-size:17px;font-weight:600;margin:0 0 4px;">Deck completo!</p>
-      <p id="memory-end-sub" style="font-size:13px;color:var(--text-secondary);margin:0 0 1rem;"></p>
-      <div class="btn-row">
-        <button id="memory-restart-btn">Jogar de novo</button>
-        <button id="memory-menu-btn">Ver decks</button>
       </div>
     </div>
   </div>

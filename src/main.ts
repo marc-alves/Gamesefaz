@@ -11,7 +11,6 @@ import {
   getLevelDominance,
   type Band,
 } from "./mastery";
-import { initMemoryGame } from "./memoryGame";
 import type { LevelDef, PoolItem, Mistake } from "./types";
 
 const DEFAULT_CAPACITY = 3;
@@ -295,9 +294,13 @@ function buildWinReview(): void {
   const frag = document.createDocumentFragment();
   const mastered: string[] = [];
   const toReview: string[] = [];
+  const totalPerCat: Record<string, number> = {};
+  level.items.forEach((item) => {
+    totalPerCat[item.cat] = (totalPerCat[item.cat] ?? 0) + 1;
+  });
   Object.keys(level.cats).forEach((cat) => {
     const record = state.perCat[cat];
-    if (record.correct === 3 && record.wrong === 0) {
+    if (record.correct === totalPerCat[cat] && record.wrong === 0) {
       mastered.push(level.cats[cat].block);
     } else if (record.wrong > 0) {
       toReview.push(level.cats[cat].label);
@@ -434,4 +437,3 @@ function backToMenu(): void {
 // BOOT
 // ---------------------------------------------------------------------
 renderMenu();
-initMemoryGame();
