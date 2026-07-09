@@ -11,6 +11,7 @@ import {
   getLevelDominance,
   type Band,
 } from "./mastery";
+import { initMemoryGame } from "./memoryGame";
 import type { LevelDef, PoolItem, Mistake } from "./types";
 
 const DEFAULT_CAPACITY = 3;
@@ -433,3 +434,4 @@ function backToMenu(): void {
 // BOOT
 // ---------------------------------------------------------------------
 renderMenu();
+initMemoryGame();

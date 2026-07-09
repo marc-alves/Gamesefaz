@@ -38,3 +38,25 @@ export interface Mistake {
   chosen: string;
   correct: string;
 }
+
+export interface MemoryPair {
+  par_id: string;
+  carta_a: string;
+  carta_b: string;
+  explicacao_ao_acertar: string;
+}
+
+export interface MemoryDeck {
+  id_jogo: string;
+  topico: string;
+  materia: string;
+  nivel: number;
+  pares: MemoryPair[];
+}
+
+export interface MemoryCard {
+  cardId: string;
+  parId: string;
+  side: "a" | "b";
+  text: string;
+}
