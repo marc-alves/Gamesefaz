@@ -1,10 +1,26 @@
 import "./style.css";
 import { LEVELS } from "./data";
 import { loadProgress, saveProgress, isUnlocked } from "./progress";
+import { recordDailyAnswer, getDailyStats, dailyLevel } from "./daily";
+import {
+  itemKey,
+  getWeight,
+  recordItemAnswer,
+  computeDominance,
+  bandForPct,
+  getLevelDominance,
+  type Band,
+} from "./mastery";
 import type { LevelDef, PoolItem, Mistake } from "./types";
 
 const DEFAULT_CAPACITY = 3;
 const COLOR_SLOTS = ["c1", "c2", "c3", "c4"];
+const BAND_COLORS: Record<Band, string> = {
+  yellow: "#E0B33D",
+  "light-green": "#4FBE8D",
+  "dark-green": "#0F6B4E",
+  neutral: "var(--text-secondary)",
+};
 
 interface GameState {
   level: LevelDef | null;
@@ -16,6 +32,8 @@ interface GameState {
   over: boolean;
   mistakes: Mistake[];
   perCat: Record<string, { correct: number; wrong: number }>;
+  weightedScore: number;
+  weightedPossible: number;
 }
 
 const state: GameState = {
@@ -28,6 +46,8 @@ const state: GameState = {
   over: false,
   mistakes: [],
   perCat: {},
+  weightedScore: 0,
+  weightedPossible: 0,
 };
 
 function el<T extends HTMLElement>(id: string): T {
@@ -40,20 +60,43 @@ const dom = {
   menuView: el<HTMLDivElement>("menu-view"),
   gameView: el<HTMLDivElement>("game-view"),
   levelList: el<HTMLDivElement>("level-list"),
+  dailyPointer: el<HTMLParagraphElement>("daily-pointer"),
+  dailyPointerGame: el<HTMLParagraphElement>("daily-pointer-game"),
   subjectTag: el<HTMLParagraphElement>("subject-tag"),
   levelHeading: el<HTMLParagraphElement>("level-heading"),
+  dominanceFill: el<HTMLDivElement>("dominance-fill"),
   pool: el<HTMLDivElement>("pool"),
   board: el<HTMLDivElement>("board"),
   scoreLabel: el<HTMLSpanElement>("score-label"),
   wastedLabel: el<HTMLSpanElement>("wasted-label"),
+  weightedLabel: el<HTMLParagraphElement>("weighted-label"),
   feedback: el<HTMLParagraphElement>("feedback"),
   wastedTray: el<HTMLDivElement>("wasted-tray"),
   endScreen: el<HTMLDivElement>("end-screen"),
   endSubjectTag: el<HTMLParagraphElement>("end-subject-tag"),
   endTitle: el<HTMLParagraphElement>("end-title"),
   endSub: el<HTMLParagraphElement>("end-sub"),
+  endDominance: el<HTMLParagraphElement>("end-dominance"),
   endReview: el<HTMLDivElement>("end-review"),
 };
+
+function renderDailyPointer(target: HTMLParagraphElement): void {
+  const stats = getDailyStats();
+  const dl = dailyLevel(stats);
+  if (stats.total === 0) {
+    target.textContent = "Hoje: ainda sem respostas";
+    return;
+  }
+  const pct = Math.round((stats.correct / stats.total) * 100);
+  target.textContent = `Hoje: Nível ${dl.level} — ${dl.label} (${pct}%, ${stats.total} respostas)`;
+}
+
+function renderDominanceBar(level: LevelDef): void {
+  const pct = computeDominance(level);
+  const band = bandForPct(pct);
+  dom.dominanceFill.style.width = `${pct}%`;
+  dom.dominanceFill.style.background = BAND_COLORS[band];
+}
 
 // ---------------------------------------------------------------------
 // MENU — agrupado por matéria, tier 1 antes de tier 2, bloqueio visual
@@ -69,6 +112,8 @@ function groupBySubject(levels: LevelDef[]): Map<string, LevelDef[]> {
 }
 
 function renderMenu(): void {
+  renderDailyPointer(dom.dailyPointer);
+
   const progress = loadProgress();
   const groups = groupBySubject(LEVELS);
   dom.levelList.innerHTML = "";
@@ -88,6 +133,10 @@ function renderMenu(): void {
         : saved
         ? `Melhor: ${saved.best}/${saved.total}`
         : "Ainda não jogado";
+      const dominance = getLevelDominance(level);
+      const dot = unlocked
+        ? `<span class="dominance-dot" style="background:${BAND_COLORS[dominance.band]};"></span>`
+        : "";
 
       const card = document.createElement("div");
       card.className = "level-card" + (unlocked ? "" : " locked");
@@ -96,7 +145,7 @@ function renderMenu(): void {
       const lockNote = unlocked ? "" : '<p class="level-sub">🔒 Complete a Fase 1 primeiro</p>';
       card.innerHTML =
         `<div>${tierTag}<p class="level-title">${level.title}</p><p class="level-sub">${level.subtitle}</p>${lockNote}</div>` +
-        `<div class="level-score">${scoreText}</div>`;
+        `<div class="level-score">${dot}${scoreText}</div>`;
       frag.appendChild(card);
     });
   });
@@ -129,6 +178,11 @@ function startLevel(level: LevelDef): void {
   Object.keys(level.cats).forEach((cat) => {
     state.perCat[cat] = { correct: 0, wrong: 0 };
   });
+  state.weightedScore = 0;
+  state.weightedPossible = level.items.reduce(
+    (acc, _item, idx) => acc + getWeight(itemKey(level.id, idx)),
+    0
+  );
 
   dom.subjectTag.textContent = `${level.subject} — ${level.tier === 2 ? "Fase 2" : "Fase 1"}`;
   dom.levelHeading.textContent = `${level.title} — toque numa peça e depois no pote certo`;
@@ -141,6 +195,8 @@ function startLevel(level: LevelDef): void {
   dom.feedback.textContent = "";
 
   updateScoreLabels();
+  renderDominanceBar(level);
+  renderDailyPointer(dom.dailyPointerGame);
   renderPool();
   renderWasted();
 
@@ -169,6 +225,7 @@ function buildBoard(level: LevelDef): void {
 function updateScoreLabels(): void {
   dom.scoreLabel.textContent = `${state.correctCount} de ${state.level!.items.length} corretas`;
   dom.wastedLabel.textContent = `Slots à toa: ${state.wasted}/${state.capacity}`;
+  dom.weightedLabel.textContent = `${state.weightedScore.toFixed(1)} / ${state.weightedPossible.toFixed(1)} pts ponderados`;
 }
 
 // ---------------------------------------------------------------------
@@ -293,6 +350,11 @@ function checkEnd(): boolean {
 function finishLevel(): void {
   const level = state.level!;
   saveProgress(level.id, state.correctCount, level.items.length);
+
+  const dominance = getLevelDominance(level);
+  dom.endDominance.textContent = `Domínio dessa fase: ${Math.round(dominance.pct)}%`;
+  dom.endDominance.style.color = BAND_COLORS[dominance.band];
+
   dom.endScreen.style.display = "block";
   dom.board.style.display = "none";
   dom.pool.style.display = "none";
@@ -321,9 +383,14 @@ dom.board.addEventListener("click", (e) => {
 
   state.pool = state.pool.filter((p) => p.id !== state.selectedId);
 
-  if (item.cat === cat) {
+  const key = itemKey(level.id, item.id);
+  const correct = item.cat === cat;
+  const weightBefore = getWeight(key);
+
+  if (correct) {
     state.correctCount += 1;
     state.perCat[cat].correct += 1;
+    state.weightedScore += weightBefore;
     placeInPote(cat, item);
     dom.feedback.textContent = `"${item.text}" era mesmo ${level.cats[cat].label} (${level.subject}).`;
     dom.feedback.style.color = "var(--text-success)";
@@ -335,8 +402,13 @@ dom.board.addEventListener("click", (e) => {
     dom.feedback.style.color = "var(--text-danger)";
   }
 
+  recordItemAnswer(key, correct);
+  recordDailyAnswer(correct);
+
   state.selectedId = null;
   updateScoreLabels();
+  renderDominanceBar(level);
+  renderDailyPointer(dom.dailyPointerGame);
   renderPool();
   renderWasted();
   checkEnd();
