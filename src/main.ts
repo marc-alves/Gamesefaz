@@ -21,6 +21,14 @@ const BAND_COLORS: Record<Band, string> = {
   "dark-green": "#0F6B4E",
   neutral: "var(--text-secondary)",
 };
+const DAILY_LEVEL_COLORS: Record<number, string> = {
+  0: "#55555c",
+  1: "#D9534F",
+  2: "#E0B33D",
+  3: "#4FBE8D",
+  4: "#2FA875",
+  5: "#0F6B4E",
+};
 
 interface GameState {
   level: LevelDef | null;
@@ -60,7 +68,9 @@ const dom = {
   menuView: el<HTMLDivElement>("menu-view"),
   gameView: el<HTMLDivElement>("game-view"),
   levelList: el<HTMLDivElement>("level-list"),
-  dailyPointer: el<HTMLParagraphElement>("daily-pointer"),
+  dailyPanelLevel: el<HTMLSpanElement>("daily-panel-level"),
+  dailyPanelFill: el<HTMLDivElement>("daily-panel-fill"),
+  dailyPanelSub: el<HTMLParagraphElement>("daily-panel-sub"),
   dailyPointerGame: el<HTMLParagraphElement>("daily-pointer-game"),
   subjectTag: el<HTMLParagraphElement>("subject-tag"),
   levelHeading: el<HTMLParagraphElement>("level-heading"),
@@ -91,6 +101,28 @@ function renderDailyPointer(target: HTMLParagraphElement): void {
   target.textContent = `Hoje: Nível ${dl.level} — ${dl.label} (${pct}%, ${stats.total} respostas)`;
 }
 
+function renderDailyPanel(): void {
+  const stats = getDailyStats();
+  const dl = dailyLevel(stats);
+  const color = DAILY_LEVEL_COLORS[dl.level];
+
+  if (stats.total === 0) {
+    dom.dailyPanelLevel.textContent = "—";
+    dom.dailyPanelLevel.style.color = DAILY_LEVEL_COLORS[0];
+    dom.dailyPanelFill.style.width = "0%";
+    dom.dailyPanelFill.style.background = DAILY_LEVEL_COLORS[0];
+    dom.dailyPanelSub.textContent = "Ainda sem respostas hoje";
+    return;
+  }
+
+  const pct = Math.round((stats.correct / stats.total) * 100);
+  dom.dailyPanelLevel.textContent = `Nível ${dl.level} — ${dl.label}`;
+  dom.dailyPanelLevel.style.color = color;
+  dom.dailyPanelFill.style.width = `${pct}%`;
+  dom.dailyPanelFill.style.background = color;
+  dom.dailyPanelSub.textContent = `${pct}% de acerto — ${stats.correct}/${stats.total} respostas`;
+}
+
 function renderDominanceBar(level: LevelDef): void {
   const pct = computeDominance(level);
   const band = bandForPct(pct);
@@ -112,7 +144,7 @@ function groupBySubject(levels: LevelDef[]): Map<string, LevelDef[]> {
 }
 
 function renderMenu(): void {
-  renderDailyPointer(dom.dailyPointer);
+  renderDailyPanel();
 
   const progress = loadProgress();
   const groups = groupBySubject(LEVELS);

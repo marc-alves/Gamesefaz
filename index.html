@@ -11,7 +11,16 @@
 
   <div id="menu-view">
     <h1>Jogo das cores</h1>
-    <p id="daily-pointer" style="font-size:12px;color:var(--text-secondary);margin:0 0 0.5rem;"></p>
+
+    <div id="daily-panel" class="daily-panel">
+      <div class="daily-panel-top">
+        <span class="daily-panel-label">Hoje</span>
+        <span id="daily-panel-level" class="daily-panel-level"></span>
+      </div>
+      <div class="daily-panel-track"><div id="daily-panel-fill" class="daily-panel-fill"></div></div>
+      <p id="daily-panel-sub" class="daily-panel-sub"></p>
+    </div>
+
     <p style="color:var(--text-secondary);font-size:13px;margin-bottom:0.5rem;">Escolha uma fase pra treinar. A Fase 2 de cada matéria libera depois que você terminar a Fase 1.</p>
     <div id="level-list"></div>
   </div>
