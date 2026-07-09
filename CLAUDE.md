@@ -24,9 +24,10 @@ virar duas cartas, comparar, repetir se errar). O usuário não gostou —
 prefere a mecânica de categorização (arrastar/tocar a peça no pote certo)
 porque não depende de decorar posição na tela, só de saber a resposta.
 
-Quando um conteúdo não encaixa bem em "pote com poucas categorias e vários
-exemplos" (ex: conteúdo com passos/sequência, como alguns tópicos de
-Português), não usar flip-match como alternativa. Perguntar ao usuário antes
-de propor uma mecânica nova — ele já indicou interesse numa lógica de
-"sequência de passos" no mesmo visual do jogo (tema escuro, cards, potes
-coloridos), mas isso ainda não foi desenhado nem confirmado.
+Quando um conteúdo não encaixa em "pote com poucas categorias e vários
+exemplos" (ex: Português — classes gramaticais, concordância, pontuação),
+não usar flip-match. O objetivo é sempre memorização, não só organizar
+informação: escolher a estrutura que facilita lembrar aquele assunto
+específico (sequência de passos, fluxo de decisão, linha do tempo, fases —
+mesmo visual do jogo), não forçar potes onde não cabe. Perguntar antes de
+implementar uma mecânica nova — nada disso ainda foi desenhado.
