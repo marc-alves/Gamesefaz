@@ -1,0 +1,58 @@
+[
+  {
+    "id": "classificacao-variaveis",
+    "subject": "Estatística",
+    "tier": 1,
+    "title": "Classificação de Variáveis",
+    "subtitle": "Qualitativa nominal/ordinal e quantitativa discreta/contínua",
+    "cats": {
+      "nominal": { "label": "Qualitativa Nominal", "block": "variáveis qualitativas nominais (categorias sem ordem natural)" },
+      "ordinal": { "label": "Qualitativa Ordinal", "block": "variáveis qualitativas ordinais (categorias com ordem/hierarquia)" },
+      "discreta": { "label": "Quantitativa Discreta", "block": "variáveis quantitativas discretas (contagem, valores enumeráveis)" },
+      "continua": { "label": "Quantitativa Contínua", "block": "variáveis quantitativas contínuas (medição, qualquer valor num intervalo)" }
+    },
+    "items": [
+      { "text": "Número da seção de votação", "cat": "nominal" },
+      { "text": "Cor dos olhos", "cat": "nominal" },
+      { "text": "Placa do carro", "cat": "nominal" },
+      { "text": "Tamanho de um objeto (pequeno, médio, grande)", "cat": "ordinal" },
+      { "text": "Classe social", "cat": "ordinal" },
+      { "text": "Grau de instrução (fundamental, médio, superior)", "cat": "ordinal" },
+      { "text": "Número de clientes numa fila", "cat": "discreta" },
+      { "text": "Número de filhos", "cat": "discreta" },
+      { "text": "Número de acidentes por mês numa rodovia", "cat": "discreta" },
+      { "text": "Volume de água em um rio", "cat": "continua" },
+      { "text": "Comprimento de um inseto", "cat": "continua" },
+      { "text": "Peso corporal (kg)", "cat": "continua" }
+    ]
+  },
+  {
+    "id": "medidas-tendencia-central",
+    "subject": "Estatística",
+    "tier": 2,
+    "requires": "classificacao-variaveis",
+    "capacity": 2,
+    "title": "Medidas de Tendência Central",
+    "subtitle": "Quando usar média, mediana ou moda",
+    "cats": {
+      "media": { "label": "Média é a mais adequada", "block": "distribuição simétrica, sem outliers relevantes" },
+      "mediana": { "label": "Mediana é a mais adequada", "block": "dados assimétricos, com valores discrepantes puxando a média" },
+      "moda": { "label": "Moda é a mais adequada", "block": "variável nominal, sem ordem nem valor numérico" },
+      "coincidem": { "label": "As três coincidem", "block": "distribuição normal: simétrica, unimodal, sem outliers" }
+    },
+    "items": [
+      { "text": "Distribuição simétrica, sem valores discrepantes", "cat": "media" },
+      { "text": "Notas de uma turma homogênea, sem alunos muito fora da curva", "cat": "media" },
+      { "text": "Peso de peças produzidas em série, sem defeitos extremos", "cat": "media" },
+      { "text": "Renda familiar de uma cidade com grande desigualdade (outliers puxam a média pra cima)", "cat": "mediana" },
+      { "text": "Preço de imóveis numa região com uma mansão isolada entre casas simples", "cat": "mediana" },
+      { "text": "Distribuição assimétrica, com valores muito discrepantes", "cat": "mediana" },
+      { "text": "Cor de carro mais vendida em uma concessionária", "cat": "moda" },
+      { "text": "Tamanho de calçado mais pedido numa loja", "cat": "moda" },
+      { "text": "Variável qualitativa nominal, sem ordem nem valor numérico", "cat": "moda" },
+      { "text": "Distribuição normal (curva em sino) perfeita", "cat": "coincidem" },
+      { "text": "Quando não há assimetria nem outliers, os três valores coincidem", "cat": "coincidem" },
+      { "text": "Distribuição unimodal e simétrica em torno de um único pico", "cat": "coincidem" }
+    ]
+  }
+]

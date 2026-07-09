@@ -1,0 +1,58 @@
+[
+  {
+    "id": "competencias-poderes",
+    "subject": "Direito Constitucional",
+    "tier": 1,
+    "title": "Competências dos Poderes",
+    "subtitle": "Câmara, Senado, STF e Município",
+    "cats": {
+      "camara": { "label": "Câmara dos Deputados", "block": "processo legislativo e competências privativas da Câmara" },
+      "senado": { "label": "Senado Federal", "block": "competências privativas do Senado (art. 52, CF/88)" },
+      "stf": { "label": "STF", "block": "controle concentrado de constitucionalidade" },
+      "municipio": { "label": "Município", "block": "competência tributária municipal" }
+    },
+    "items": [
+      { "text": "Iniciativa de leis ordinárias em geral", "cat": "camara" },
+      { "text": "Autorizar, por dois terços, processo contra o Presidente", "cat": "camara" },
+      { "text": "Representação proporcional à população de cada estado", "cat": "camara" },
+      { "text": "Fixar as alíquotas máximas do ITCMD (art. 52, V)", "cat": "senado" },
+      { "text": "Processar e julgar o Presidente nos crimes de responsabilidade", "cat": "senado" },
+      { "text": "Representação igualitária: 3 senadores por estado", "cat": "senado" },
+      { "text": "Julgar ação direta de inconstitucionalidade (ADI)", "cat": "stf" },
+      { "text": "Editar súmula vinculante", "cat": "stf" },
+      { "text": "Guardião da Constituição Federal", "cat": "stf" },
+      { "text": "Instituir o ISS sobre serviços", "cat": "municipio" },
+      { "text": "Instituir o IPTU sobre imóvel urbano", "cat": "municipio" },
+      { "text": "Legislar sobre assuntos de interesse local", "cat": "municipio" }
+    ]
+  },
+  {
+    "id": "tipos-competencia",
+    "subject": "Direito Constitucional",
+    "tier": 2,
+    "requires": "competencias-poderes",
+    "capacity": 2,
+    "title": "Tipos de Competência Federativa",
+    "subtitle": "Privativa, exclusiva, comum e concorrente",
+    "cats": {
+      "privativa": { "label": "Privativa (art. 22)", "block": "competência privativa da União, mas delegável por lei complementar" },
+      "exclusiva": { "label": "Exclusiva (art. 21)", "block": "competência exclusiva da União, nunca delegável" },
+      "comum": { "label": "Comum (art. 23)", "block": "competência administrativa comum a todos os entes, sem hierarquia" },
+      "concorrente": { "label": "Concorrente (art. 24)", "block": "competência legislativa concorrente — só União, Estados e DF; Municípios ficam de fora" }
+    },
+    "items": [
+      { "text": "Legislar sobre direito civil, comercial e processual", "cat": "privativa" },
+      { "text": "Legislar sobre trânsito e transporte", "cat": "privativa" },
+      { "text": "Legislar sobre desapropriação", "cat": "privativa" },
+      { "text": "Declarar guerra e celebrar a paz", "cat": "exclusiva" },
+      { "text": "Emitir moeda", "cat": "exclusiva" },
+      { "text": "Manter relações com Estados estrangeiros", "cat": "exclusiva" },
+      { "text": "Proteger o meio ambiente e combater a poluição (ação administrativa)", "cat": "comum" },
+      { "text": "Cuidar da saúde e assistência pública", "cat": "comum" },
+      { "text": "Proteger documentos, obras e bens de valor histórico", "cat": "comum" },
+      { "text": "Legislar sobre direito tributário e financeiro", "cat": "concorrente" },
+      { "text": "Legislar sobre proteção ao meio ambiente e controle da poluição", "cat": "concorrente" },
+      { "text": "Legislar sobre educação, cultura e desporto", "cat": "concorrente" }
+    ]
+  }
+]

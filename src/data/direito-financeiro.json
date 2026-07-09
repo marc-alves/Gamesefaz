@@ -1,0 +1,58 @@
+[
+  {
+    "id": "planejamento-orcamentario",
+    "subject": "Direito Financeiro",
+    "tier": 1,
+    "title": "PPA, LDO, LOA e LRF",
+    "subtitle": "Planejamento orçamentário e responsabilidade fiscal",
+    "cats": {
+      "ppa": { "label": "PPA — Plano Plurianual", "block": "PPA: base legal (art. 165, §1º, CF/88) e vigência de 4 anos deslocada do mandato" },
+      "ldo": { "label": "LDO — Diretrizes Orçamentárias", "block": "LDO: base legal (art. 165, §2º, CF/88), vigência anual e papel de ponte entre PPA e LOA" },
+      "loa": { "label": "LOA — Orçamentária Anual", "block": "LOA: base legal (art. 165, §5º, CF/88), vigência coincidente com o ano civil" },
+      "lrf": { "label": "LRF — Responsabilidade Fiscal", "block": "LRF (LC 101/2000): metas fiscais, limites de despesa e regulamentação do art. 163 da CF/88" }
+    },
+    "items": [
+      { "text": "Instituído pelo art. 165, §1º da CF/88: diretrizes, objetivos e metas de médio prazo", "cat": "ppa" },
+      { "text": "Vigência de 4 anos, começando no 2º ano de um mandato e indo até o 1º ano do mandato seguinte", "cat": "ppa" },
+      { "text": "As despesas de capital e os programas de duração continuada devem estar nele compatibilizados", "cat": "ppa" },
+      { "text": "Prevista no art. 165, §2º da CF/88, orienta a elaboração da lei orçamentária anual", "cat": "ldo" },
+      { "text": "Vigência anual; precisa ser aprovada até o encerramento do primeiro período da sessão legislativa", "cat": "ldo" },
+      { "text": "Traz o Anexo de Metas Fiscais e o Anexo de Riscos Fiscais, exigidos pela Lei de Responsabilidade Fiscal", "cat": "ldo" },
+      { "text": "Prevista no art. 165, §5º da CF/88: estima a receita e fixa a despesa para o exercício financeiro", "cat": "loa" },
+      { "text": "Vigência de 1 ano, coincidindo com o ano civil (1º de janeiro a 31 de dezembro)", "cat": "loa" },
+      { "text": "Compreende o orçamento fiscal, o de investimento das estatais e o da seguridade social", "cat": "loa" },
+      { "text": "Instituída pela Lei Complementar 101/2000, regulamentando o art. 163 da CF/88", "cat": "lrf" },
+      { "text": "Exige metas fiscais de resultado primário e nominal dentro da LDO", "cat": "lrf" },
+      { "text": "Limita a despesa com pessoal a percentuais da receita corrente líquida (RCL)", "cat": "lrf" }
+    ]
+  },
+  {
+    "id": "receitas-despesas",
+    "subject": "Direito Financeiro",
+    "tier": 2,
+    "requires": "planejamento-orcamentario",
+    "capacity": 2,
+    "title": "Receitas e Despesas Públicas",
+    "subtitle": "Correntes x capital, segundo a Lei 4.320/64",
+    "cats": {
+      "receita_corrente": { "label": "Receita Corrente", "block": "receitas correntes: tributária, patrimonial, de serviços (art. 11, §1º, Lei 4.320/64)" },
+      "receita_capital": { "label": "Receita de Capital", "block": "receitas de capital: dívidas, venda de bens e o superávit do orçamento corrente (art. 11, §2º)" },
+      "despesa_corrente": { "label": "Despesa Corrente", "block": "despesas correntes: custeio, pessoal e transferências sem contraprestação direta" },
+      "despesa_capital": { "label": "Despesa de Capital", "block": "despesas de capital: investimentos, inversões financeiras e amortização da dívida" }
+    },
+    "items": [
+      { "text": "Receita tributária, de contribuições, patrimonial e de serviços", "cat": "receita_corrente" },
+      { "text": "Recursos recebidos de terceiros destinados a atender despesas correntes", "cat": "receita_corrente" },
+      { "text": "Receita de exploração do patrimônio ou de atividades econômicas do Estado", "cat": "receita_corrente" },
+      { "text": "Provenientes da constituição de dívidas (operações de crédito)", "cat": "receita_capital" },
+      { "text": "Conversão em espécie de bens e direitos (ex: venda de um imóvel público)", "cat": "receita_capital" },
+      { "text": "O superávit do orçamento corrente é classificado aqui, não como receita corrente", "cat": "receita_capital" },
+      { "text": "Despesas de custeio: manutenção de serviços já existentes", "cat": "despesa_corrente" },
+      { "text": "Transferências correntes, sem contraprestação direta (ex: subvenções sociais)", "cat": "despesa_corrente" },
+      { "text": "Pagamento de pessoal e encargos sociais", "cat": "despesa_corrente" },
+      { "text": "Investimentos: planejamento e execução de obras públicas", "cat": "despesa_capital" },
+      { "text": "Inversões financeiras: aquisição de imóveis ou bens já em utilização", "cat": "despesa_capital" },
+      { "text": "Amortização da dívida pública", "cat": "despesa_capital" }
+    ]
+  }
+]

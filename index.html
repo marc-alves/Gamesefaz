@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Jogo das cores - SEFAZ-CE</title>
+</head>
+<body>
+
+<div id="app">
+
+  <div id="menu-view">
+    <h1>Jogo das cores</h1>
+    <p style="color:var(--text-secondary);font-size:13px;margin-bottom:0.5rem;">Escolha uma fase pra treinar. A Fase 2 de cada matéria libera depois que você terminar a Fase 1.</p>
+    <div id="level-list"></div>
+  </div>
+
+  <div id="game-view" style="display:none;">
+    <button class="back-btn" id="back-btn">&larr; Menu</button>
+    <p class="subject-tag" id="subject-tag"></p>
+    <p id="level-heading" style="font-size:13px;color:var(--text-secondary);margin-bottom:0.75rem;"></p>
+
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:0.75rem;">
+      <span id="score-label"></span>
+      <span id="wasted-label"></span>
+    </div>
+
+    <div id="pool" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;"></div>
+    <div id="board" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:0.75rem;"></div>
+
+    <p id="feedback" style="font-size:13px;color:var(--text-secondary);min-height:36px;margin:0 0 0.5rem;"></p>
+    <div style="display:flex;gap:6px;" id="wasted-tray"></div>
+
+    <div id="end-screen" style="display:none;text-align:center;padding:1rem 0;">
+      <p class="subject-tag" id="end-subject-tag" style="text-align:left;"></p>
+      <p style="font-size:17px;font-weight:600;margin:0 0 4px;" id="end-title"></p>
+      <p style="font-size:13px;color:var(--text-secondary);margin:0 0 1rem;" id="end-sub"></p>
+      <div id="end-review" style="text-align:left;margin-bottom:1rem;"></div>
+      <div class="btn-row">
+        <button id="restart-btn">Jogar de novo</button>
+        <button id="menu-btn">Menu</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

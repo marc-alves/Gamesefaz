@@ -1,0 +1,58 @@
+[
+  {
+    "id": "poderes-administrativos",
+    "subject": "Direito Administrativo",
+    "tier": 1,
+    "title": "Poderes Administrativos",
+    "subtitle": "Polícia, Hierárquico, Disciplinar, Regulamentar",
+    "cats": {
+      "policia": { "label": "Poder de Polícia", "block": "poder de polícia e seus atributos (discricionariedade, autoexecutoriedade, coercibilidade)" },
+      "hierarquico": { "label": "Poder Hierárquico", "block": "poder hierárquico e organização interna da Administração" },
+      "disciplinar": { "label": "Poder Disciplinar", "block": "poder disciplinar e apuração de infrações funcionais" },
+      "regulamentar": { "label": "Poder Regulamentar", "block": "poder regulamentar e seus limites (não inova na ordem jurídica)" }
+    },
+    "items": [
+      { "text": "Limitar o exercício de direitos individuais em favor do interesse público", "cat": "policia" },
+      { "text": "Fiscalizar estabelecimentos comerciais quanto às normas sanitárias", "cat": "policia" },
+      { "text": "Atributos: discricionariedade, autoexecutoriedade e coercibilidade", "cat": "policia" },
+      { "text": "Distribuir e escalonar as funções entre os órgãos da Administração", "cat": "hierarquico" },
+      { "text": "Dar ordens aos subordinados e fiscalizar o cumprimento", "cat": "hierarquico" },
+      { "text": "Avocar atribuições de órgão subordinado", "cat": "hierarquico" },
+      { "text": "Apurar infrações funcionais de servidores públicos", "cat": "disciplinar" },
+      { "text": "Aplicar penalidades a quem tem vínculo jurídico com a Administração", "cat": "disciplinar" },
+      { "text": "Instaurar processo administrativo disciplinar (PAD)", "cat": "disciplinar" },
+      { "text": "Editar decretos para a fiel execução da lei", "cat": "regulamentar" },
+      { "text": "Detalhar a lei sem criar obrigação nova (não pode inovar)", "cat": "regulamentar" },
+      { "text": "Expedir regulamentos administrativos gerais e abstratos", "cat": "regulamentar" }
+    ]
+  },
+  {
+    "id": "atributos-ato-administrativo",
+    "subject": "Direito Administrativo",
+    "tier": 2,
+    "requires": "poderes-administrativos",
+    "capacity": 2,
+    "title": "Atributos do Ato Administrativo",
+    "subtitle": "Presunção, autoexecutoriedade, imperatividade, tipicidade",
+    "cats": {
+      "presuncao": { "label": "Presunção de Legitimidade", "block": "presente em todos os atos administrativos; presunção relativa (juris tantum)" },
+      "autoexecutoriedade": { "label": "Autoexecutoriedade", "block": "não está presente em todos os atos; dispensa intervenção prévia do Judiciário" },
+      "imperatividade": { "label": "Imperatividade (Coercibilidade)", "block": "não está presente em todos os atos; impõe-se a terceiros sem sua concordância" },
+      "tipicidade": { "label": "Tipicidade", "block": "presente em todos os atos administrativos; exige correspondência a tipo legal" }
+    },
+    "items": [
+      { "text": "Presente em todos os atos administrativos, é uma presunção relativa", "cat": "presuncao" },
+      { "text": "Permite que o ato produza efeitos imediatos, cabendo ao interessado provar o contrário", "cat": "presuncao" },
+      { "text": "Decorre da submissão da Administração à lei", "cat": "presuncao" },
+      { "text": "Não está presente em todos os atos; permite execução direta, sem prévia ordem judicial", "cat": "autoexecutoriedade" },
+      { "text": "Fundamenta-se na urgência e no poder de polícia (ex: apreensão de mercadoria irregular)", "cat": "autoexecutoriedade" },
+      { "text": "Mesmo sem essa autoexecutoriedade, o ato pode ser controlado depois pelo Judiciário", "cat": "autoexecutoriedade" },
+      { "text": "Não está presente em todos os atos; impõe obrigações a terceiros independentemente de concordância", "cat": "imperatividade" },
+      { "text": "Ausente nos atos administrativos negociais, que dependem da vontade do particular", "cat": "imperatividade" },
+      { "text": "Permite a imposição unilateral de restrições ao administrado", "cat": "imperatividade" },
+      { "text": "Presente em todos os atos administrativos", "cat": "tipicidade" },
+      { "text": "Exige que o ato corresponda a um tipo previamente definido em lei", "cat": "tipicidade" },
+      { "text": "Impede que a Administração pratique atos fora do que a lei prevê como espécie", "cat": "tipicidade" }
+    ]
+  }
+]

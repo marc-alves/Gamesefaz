@@ -1,0 +1,58 @@
+[
+  {
+    "id": "anterioridade-excecoes",
+    "subject": "Direito Tributário",
+    "tier": 1,
+    "title": "Anterioridade Anual e Noventena",
+    "subtitle": "Exceções ao art. 150, III, \"b\" e \"c\", da CF/88",
+    "cats": {
+      "imediato": { "label": "Exceção às duas (cobrança imediata)", "block": "tributos extrafiscais que dispensam anterioridade anual e noventena: II, IE, IOF, IEG e empréstimo compulsório de guerra/calamidade" },
+      "so_anual": { "label": "Exceção só à Anterioridade Anual", "block": "dispensam esperar o próximo exercício, mas ainda respeitam os 90 dias: IPI, restabelecimento de CIDE-Combustíveis, contribuições da seguridade social (art. 195, §6º)" },
+      "so_noventena": { "label": "Exceção só à Noventena", "block": "dispensam os 90 dias, mas ainda esperam o próximo exercício: IR e fixação da base de cálculo do IPTU/IPVA" },
+      "regra_geral": { "label": "Regra Geral (respeita as duas)", "block": "tributos que seguem a regra cheia do art. 150, III, b e c, CF/88, como ITCMD, ISS e majoração de alíquota do IPVA" }
+    },
+    "items": [
+      { "text": "Imposto de Importação (II) e Imposto de Exportação (IE) — função extrafiscal", "cat": "imediato" },
+      { "text": "IOF — Imposto sobre Operações Financeiras", "cat": "imediato" },
+      { "text": "Imposto Extraordinário de Guerra (IEG) e Empréstimo Compulsório por guerra ou calamidade", "cat": "imediato" },
+      { "text": "IPI — não espera o próximo exercício, mas precisa aguardar os 90 dias", "cat": "so_anual" },
+      { "text": "Restabelecimento de alíquota da CIDE-Combustíveis — só aguarda a noventena", "cat": "so_anual" },
+      { "text": "Contribuições para a seguridade social (art. 195, §6º) — só aguardam 90 dias, nunca o próximo exercício", "cat": "so_anual" },
+      { "text": "Imposto de Renda (IR) — espera o próximo exercício, mas não precisa aguardar 90 dias", "cat": "so_noventena" },
+      { "text": "Fixação da base de cálculo do IPTU — só espera o próximo exercício financeiro", "cat": "so_noventena" },
+      { "text": "Fixação da base de cálculo do IPVA — só espera o próximo exercício financeiro", "cat": "so_noventena" },
+      { "text": "ITCMD — majoração respeita anterioridade anual e noventena", "cat": "regra_geral" },
+      { "text": "ISS — majoração respeita as duas anterioridades", "cat": "regra_geral" },
+      { "text": "Majoração de alíquota do IPVA (atenção: é diferente da base de cálculo, que é exceção à noventena)", "cat": "regra_geral" }
+    ]
+  },
+  {
+    "id": "especies-tributarias",
+    "subject": "Direito Tributário",
+    "tier": 2,
+    "requires": "anterioridade-excecoes",
+    "capacity": 2,
+    "title": "Espécies Tributárias",
+    "subtitle": "Teoria pentapartite: impostos, taxas e mais",
+    "cats": {
+      "impostos": { "label": "Impostos", "block": "tributos não vinculados a nenhuma atuação estatal específica" },
+      "taxas": { "label": "Taxas", "block": "tributos vinculados a serviço público específico/divisível ou ao poder de polícia" },
+      "melhoria": { "label": "Contribuição de Melhoria", "block": "tributo vinculado a obra pública que gere valorização imobiliária" },
+      "compulsorio_especial": { "label": "Empréstimo Compulsório / Contribuições Especiais", "block": "tributos com destinação vinculada; o empréstimo compulsório é o único restituível ao contribuinte" }
+    },
+    "items": [
+      { "text": "Não vinculado a nenhuma atuação estatal específica (ex: IR, ICMS, IPVA)", "cat": "impostos" },
+      { "text": "Fato gerador é uma manifestação de riqueza do próprio contribuinte", "cat": "impostos" },
+      { "text": "A receita não tem destinação vinculada a um serviço específico", "cat": "impostos" },
+      { "text": "Vinculada à prestação de serviço público específico e divisível ou ao poder de polícia", "cat": "taxas" },
+      { "text": "Não pode ter base de cálculo própria de imposto (art. 145, §2º, CF/88)", "cat": "taxas" },
+      { "text": "Exemplo: taxa de coleta de lixo domiciliar (serviço específico e divisível)", "cat": "taxas" },
+      { "text": "Vinculada à realização de obra pública que gere valorização imobiliária", "cat": "melhoria" },
+      { "text": "Tem como limite total o custo da obra e como limite individual a valorização de cada imóvel", "cat": "melhoria" },
+      { "text": "Não pode ser cobrada sem a valorização efetiva do imóvel beneficiado", "cat": "melhoria" },
+      { "text": "Instituído por Lei Complementar, para calamidade pública, guerra externa ou investimento urgente", "cat": "compulsorio_especial" },
+      { "text": "É o único tributo restituível ao contribuinte (característica do empréstimo compulsório)", "cat": "compulsorio_especial" },
+      { "text": "Contribuições especiais têm destinação constitucionalmente vinculada (ex: financiamento da seguridade social)", "cat": "compulsorio_especial" }
+    ]
+  }
+]
