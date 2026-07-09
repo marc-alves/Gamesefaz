@@ -4,6 +4,7 @@ import direitoAdministrativo from "./direito-administrativo.json";
 import direitoFinanceiro from "./direito-financeiro.json";
 import direitoTributario from "./direito-tributario.json";
 import estatistica from "./estatistica.json";
+import linguaPortuguesa from "./lingua-portuguesa.json";
 
 const raw = [
   ...direitoConstitucional,
@@ -11,6 +12,7 @@ const raw = [
   ...direitoFinanceiro,
   ...direitoTributario,
   ...estatistica,
+  ...linguaPortuguesa,
 ];
 
 export const LEVELS: LevelDef[] = raw as unknown as LevelDef[];

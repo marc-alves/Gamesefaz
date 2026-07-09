@@ -1,0 +1,58 @@
+[
+  {
+    "id": "figuras-fundamentais",
+    "subject": "Língua Portuguesa",
+    "tier": 1,
+    "title": "Figuras Fundamentais",
+    "subtitle": "Metáfora, metonímia, hipérbole e prosopopeia",
+    "cats": {
+      "metafora": { "label": "Metáfora", "block": "comparação implícita entre dois termos, sem conectivo como 'como'" },
+      "metonimia": { "label": "Metonímia", "block": "troca de um termo por outro que tem relação direta com ele (autor/obra, marca/produto, recipiente/conteúdo, lugar/pessoas)" },
+      "hiperbole": { "label": "Hipérbole", "block": "exagero proposital pra dar ênfase a uma ideia" },
+      "prosopopeia": { "label": "Prosopopeia (Personificação)", "block": "atribuição de característica ou ação humana a algo que não é humano" }
+    },
+    "items": [
+      { "text": "\"Seus olhos são duas estrelas\"", "cat": "metafora" },
+      { "text": "\"O tempo é um rio que não para\"", "cat": "metafora" },
+      { "text": "\"Ele é um leão em campo\"", "cat": "metafora" },
+      { "text": "\"Todo mundo aplaudiu o Brasil no Mundial\" (lugar pelas pessoas)", "cat": "metonimia" },
+      { "text": "\"Vestir Armani\" (marca pelo produto)", "cat": "metonimia" },
+      { "text": "\"Tomar uma taça\" (recipiente pelo conteúdo)", "cat": "metonimia" },
+      { "text": "\"Já disse isso mil vezes\"", "cat": "hiperbole" },
+      { "text": "\"Estou morrendo de fome\"", "cat": "hiperbole" },
+      { "text": "\"Chorei rios de lágrimas\"", "cat": "hiperbole" },
+      { "text": "\"O vento sussurrava segredos\"", "cat": "prosopopeia" },
+      { "text": "\"As árvores dançavam com a brisa\"", "cat": "prosopopeia" },
+      { "text": "\"A cidade dormia tranquila\"", "cat": "prosopopeia" }
+    ]
+  },
+  {
+    "id": "figuras-sutis",
+    "subject": "Língua Portuguesa",
+    "tier": 2,
+    "requires": "figuras-fundamentais",
+    "capacity": 2,
+    "title": "Figuras Sutis",
+    "subtitle": "Eufemismo, litote, antítese e paradoxo",
+    "cats": {
+      "eufemismo": { "label": "Eufemismo", "block": "suaviza algo desagradável, doloroso ou constrangedor" },
+      "litote": { "label": "Litote", "block": "um tipo especial de eufemismo: afirma algo negando o seu contrário" },
+      "antitese": { "label": "Antítese", "block": "aproxima palavras ou ideias de sentido oposto, mantendo-as separadas" },
+      "paradoxo": { "label": "Paradoxo", "block": "vai além da antítese: funde as ideias opostas numa única expressão, sem dar pra separá-las" }
+    },
+    "items": [
+      { "text": "\"Ele foi para um lugar melhor\" (em vez de \"morreu\")", "cat": "eufemismo" },
+      { "text": "\"A empresa fez um ajuste de quadro de pessoal\" (em vez de \"demitiu\")", "cat": "eufemismo" },
+      { "text": "\"Ela está mal de saúde\" (suaviza uma doença grave)", "cat": "eufemismo" },
+      { "text": "\"Não foi de todo mau o que ele fez\" (= foi bom)", "cat": "litote" },
+      { "text": "\"Ele não é bobo\" (= é esperto)", "cat": "litote" },
+      { "text": "\"Não é sem razão que ela desconfia\" (= há razão)", "cat": "litote" },
+      { "text": "\"Era o melhor dos tempos, era o pior dos tempos\"", "cat": "antitese" },
+      { "text": "\"Rir e chorar ao mesmo tempo\"", "cat": "antitese" },
+      { "text": "\"Amor e ódio se misturavam nele\"", "cat": "antitese" },
+      { "text": "\"Ouço um silêncio ensurdecedor no meio da multidão\"", "cat": "paradoxo" },
+      { "text": "\"É um doce amargo essa vitória que veio tarde demais\"", "cat": "paradoxo" },
+      { "text": "\"Sinto uma dor gostosa depois do treino\"", "cat": "paradoxo" }
+    ]
+  }
+]
